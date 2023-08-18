@@ -20,6 +20,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const imgEl = document.createElement('img');
     imgEl.classList.add('imageContainer');
     imgEl.setAttribute("src", file.imagePath); //change to object with imagePath;
+    addClass(imgEl, file.classes);
     listEl.appendChild(imgEl);
   }
 
