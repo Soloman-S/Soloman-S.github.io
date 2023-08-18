@@ -22,13 +22,20 @@ window.addEventListener('DOMContentLoaded', () => {
     new Button("class4", "Class 4"),
   ]
 
-
+  for (b of buttonArray) {
+    const butEl = document.createElement('button');
+    butEl.classList.add('but');
+    butEl.onclick = "filterSelection(" + b.className + ")"
+    addClass(imgEl, file.classes);
+    listEl.appendChild(imgEl);
+  }
   
-  for (file of imagesArray) {
+  
+  for (i of imagesArray) {
     const imgEl = document.createElement('img');
     imgEl.classList.add('imageContainer');
-    imgEl.setAttribute("src", file.imagePath); //change to object with imagePath;
-    addClass(imgEl, file.classes);
+    imgEl.setAttribute("src", i.imagePath);
+    addClass(imgEl, i.classes);
     listEl.appendChild(imgEl);
   }
 
