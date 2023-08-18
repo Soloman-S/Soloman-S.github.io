@@ -8,4 +8,10 @@ h1 {
 }
 
 .imageContainer {
+  display: none;
   max-width: 75%;
+}
+
+.show {
+  display: block;
+}
