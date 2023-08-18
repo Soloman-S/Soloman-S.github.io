@@ -1,12 +1,25 @@
 window.addEventListener('DOMContentLoaded', () => {
 
-
   const listEl = document.querySelector('.listContainer');
-  imagesArray = ["images/image3.jpg", "images/image4.jpg"]
+  
+  image1 = {
+    imagePath = "images/image3.jpg",
+    classes = "class1"
+  }
+
+  image2 = {
+    imagePath = "images/image4.jpg",
+    classes = "class2"
+  }
+
+  imagesArray = [image1, image2]
+
+
+  
   for (file of imagesArray) {
     const imgEl = document.createElement('img');
     imgEl.classList.add('imageContainer');
-    imgEl.setAttribute("src", file); //change to json with imagePath;
+    imgEl.setAttribute("src", file.imagePath); //change to object with imagePath;
     listEl.appendChild(imgEl);
   }
 
@@ -37,7 +50,6 @@ function filterSelection(c) {
   }
 }
 
-// Show filtered elements
 function addClass(element, name) {
   var i, arr1, arr2;
   arr1 = element.className.split(" ");
