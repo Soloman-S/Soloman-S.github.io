@@ -7,7 +7,12 @@ window.addEventListener('DOMContentLoaded', () => {
   const image8 = new Image("images/image8.jpg", "class2")
   const image9 = new Image("images/image9.jpg", "class5")
 
-  imagesArray = [image7, image8, image9]
+  imagesArray = [
+    new Image("images/image9.jpg", "class1"),
+    image7, 
+    image8, 
+    image9
+  ]
 
 
   
