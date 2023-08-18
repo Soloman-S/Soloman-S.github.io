@@ -12,10 +12,7 @@ window.addEventListener('DOMContentLoaded', () => {
     classes:"class2"
   }
 
-  const image9 = {
-    imagePath:"images/image9.jpg",
-    classes:"class5"
-  }
+  const image9 = new Image("images/image9.jpg", "class5")
 
   imagesArray = [image7, image8, image9]
 
@@ -44,6 +41,10 @@ window.addEventListener('DOMContentLoaded', () => {
   };
 });
 
+function Image(imagePath, classes) {
+  this.imagePath = imagePath;
+  this.classes = classes;
+}
 
 function filterSelection(c) {
   var x, i;
