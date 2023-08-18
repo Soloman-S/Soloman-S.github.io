@@ -37,7 +37,7 @@ function removeClass(element, name) {
 
 // Add active class to the current control button (highlight it)
 var btnContainer = document.getElementById("myBtnContainer");
-var btns = myBtnContainer.getElementsByClassName("btn");
+var btns = btnContainer.getElementsByClassName("btn");
 for (var i = 0; i < btns.length; i++) {
   btns[i].addEventListener("click", function() {
     var current = document.getElementsByClassName("active");
