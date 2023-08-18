@@ -2,17 +2,22 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const listEl = document.querySelector('.listContainer');
   
-  const image1 = {
-    imagePath:"images/image3.jpg",
-    classes:"class1"
+  const image7 = {
+    imagePath:"images/image7.jpg",
+    classes:"class1 class4"
   }
 
-  const image2 = {
-    imagePath:"images/image4.jpg",
+  const image8 = {
+    imagePath:"images/image8.jpg",
     classes:"class2"
   }
 
-  imagesArray = [image1, image2]
+  const image9 = {
+    imagePath:"images/image9.jpg",
+    classes:"class5"
+  }
+
+  imagesArray = [image7, image8, image9]
 
 
   
