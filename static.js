@@ -1,4 +1,16 @@
 window.addEventListener('DOMContentLoaded', () => {
+
+
+  const listEl = document.querySelector('.listContainer');
+  imagesArray = ["images/image3.jpg", "images/image4.jpg"]
+  for (file in imagesArray) {
+    const imgEl = document.createElement('img');
+    imgEl.classList.add('imageContainer');
+    imgEl.src = file; //imagePath;
+    listEl.appendChild(imgEl);
+  }
+
+  
   filterSelection("all")
   
   // Add active class to the current control button (highlight it)
