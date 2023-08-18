@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const listEl = document.querySelector('.listContainer');
   imagesArray = ["images/image3.jpg", "images/image4.jpg"]
-  for (file in imagesArray) {
+  for (file of imagesArray) {
     const imgEl = document.createElement('img');
     imgEl.classList.add('imageContainer');
     imgEl.setAttribute("src", file); //change to json with imagePath;
