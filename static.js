@@ -3,13 +3,13 @@ window.addEventListener('DOMContentLoaded', () => {
   const listEl = document.querySelector('.listContainer');
   
   const image1 = {
-    imagePath = "images/image3.jpg",
-    classes = "class1"
+    imagePath: "images/image3.jpg",
+    classes: "class1"
   }
 
   const image2 = {
-    imagePath = "images/image4.jpg",
-    classes = "class2"
+    imagePath: "images/image4.jpg",
+    classes: "class2"
   }
 
   imagesArray = [image1, image2]
