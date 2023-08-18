@@ -2,12 +2,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const listEl = document.querySelector('.listContainer');
   
-  image1 = {
+  const image1 = {
     imagePath = "images/image3.jpg",
     classes = "class1"
   }
 
-  image2 = {
+  const image2 = {
     imagePath = "images/image4.jpg",
     classes = "class2"
   }
