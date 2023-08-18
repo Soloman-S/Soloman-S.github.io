@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
   for (file in imagesArray) {
     const imgEl = document.createElement('img');
     imgEl.classList.add('imageContainer');
-    imgEl.src = file; //imagePath;
+    imgEl.setAttribute("src", "file"); //change to json with imagePath;
     listEl.appendChild(imgEl);
   }
 
