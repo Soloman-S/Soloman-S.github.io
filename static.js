@@ -3,15 +3,17 @@ window.addEventListener('DOMContentLoaded', () => {
   // DATA ----------------------------------------------------------
   imagesArray = [
     new Image("images/image1.png", "art"),
-    new Image("images/image2.jpg", "people surprise"),
-    new Image("images/image3.jpg", "people surprise"),
-    new Image("images/image4.jpg", "people surprise"),
-    new Image("images/image5.jpg", "outside"),
-    new Image("images/image6.jpg", "outside people"),
-    new Image("images/image7.jpg", ""), 
-    new Image("images/image8.jpg", "art"), 
-    new Image("images/image9.jpg", "outside")
+    new Image("images/image2.jpg", "show people surprise"),
+    new Image("images/image3.jpg", "show people surprise"),
+    new Image("images/image4.jpg", "show people surprise"),
+    new Image("images/image5.jpg", "show outside"),
+    new Image("images/image6.jpg", "show outside people"),
+    new Image("images/image7.jpg", "show"), 
+    new Image("images/image8.jpg", "show art"), 
+    new Image("images/image9.jpg", "show outside")
   ]
+
+  //apply filters here
 
   buttonArray = [
     new Button("class1", "Class 1"),
@@ -53,22 +55,10 @@ window.addEventListener('DOMContentLoaded', () => {
   let indices = new Array(); //indices of next batch of images to load
   
   indices = getPics(loaded, limit, total);
-  console.log(indices);
   loadPics(imagesArray, indices, listEl);
   loaded += indices.length;
-  console.log(hasMorePics(loaded, total));
 
-  indices = getPics(loaded, limit, total);
-  console.log(indices);
-  loadPics(imagesArray, indices, listEl);
-  loaded += indices.length;
-  console.log(hasMorePics(loaded, total));
 
-  indices = getPics(loaded, limit, total);
-  console.log(indices);
-  loadPics(imagesArray, indices, listEl);
-  loaded += indices.length;
-  console.log(hasMorePics(loaded, total));
 
   filterSelection("all")
 });
@@ -97,13 +87,13 @@ function Button(className, label) {
 
 // FILTER FUNCTIONS --------------------------------------------------------------------------
 function filterSelection(c) {
-  var x, i;
-  x = document.getElementsByClassName("imageContainer");
+  var images, i;
+  images = document.getElementsByClassName("imageContainer");
   if (c == "all") c = "";
   // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
-  for (i = 0; i < x.length; i++) {
-    removeClass(x[i], "show");
-    if (x[i].className.indexOf(c) > -1) addClass(x[i], "show");
+  for (i = 0; i < images.length; i++) {
+    removeClass(images[i], "show");
+    if (images[i].className.indexOf(c) > -1) addClass(images[i], "show");
   }
 }
 
