@@ -58,7 +58,7 @@ window.addEventListener('DOMContentLoaded', () => {
   loaded += indices.length;
   console.log(hasMorePics(loaded, total));
 
-  /*indices = getPics(loaded, limit, total);
+  indices = getPics(loaded, limit, total);
   console.log(indices);
   loadPics(imagesArray, indices, listEl);
   loaded += indices.length;
@@ -68,7 +68,7 @@ window.addEventListener('DOMContentLoaded', () => {
   console.log(indices);
   loadPics(imagesArray, indices, listEl);
   loaded += indices.length;
-  console.log(hasMorePics(loaded, total));*/
+  console.log(hasMorePics(loaded, total));
 
   filterSelection("all")
 });
@@ -146,7 +146,7 @@ function getPics(loaded, limit, total) { //returns an array of indicies of image
 }
 
 function loadPics(imagesArray, indices, listEl) { //load pictures of indices through a loop
-  for (var i = indices[0]; i < indices[indices.length]; i++) {
+  for (var i = indices[0]; i <= indices[indices.length - 1]; i++) {
     const imgEl = document.createElement('img');
     imgEl.classList.add('imageContainer');
     imgEl.setAttribute("src", imagesArray[i].imagePath);
