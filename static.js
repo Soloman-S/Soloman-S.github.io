@@ -45,8 +45,6 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   };
   
-});
-
   // Set up infinite scroll
   const limit = 4; //number of images loaded per scroll
   let currentPage = 1; //number of pages of images loaded
@@ -65,8 +63,9 @@ window.addEventListener('DOMContentLoaded', () => {
   console.log(loaded);
   console.log(hasMorePics(loaded, total));
 
-
   
+  filterSelection("all")
+});
 
   
   //for (i of imagesArray) {
@@ -77,10 +76,6 @@ window.addEventListener('DOMContentLoaded', () => {
   //  listEl.appendChild(imgEl);
   //}
 
-
-  
-  filterSelection("all")
-  
 
 
 // SET UP FUNCTIONS - dynamic page generation ------------------------------------------------
