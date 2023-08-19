@@ -51,25 +51,25 @@ window.addEventListener('DOMContentLoaded', () => {
   let total = imagesArray.length; //total number of images to load
   let loaded = 0; //number of images loaded
   let indices = new Array(); //indices of next batch of images to load
-  indices = getPics(loaded, limit, total);
-  loadPics(imagesArray, indices, listEl);
-  loaded += indices.length;
-  console.log(loaded);
-  console.log(hasMorePics(loaded, total));
-
-  indices = getPics(loaded, limit, total);
-  loadPics(imagesArray, indices, listEl);
-  loaded += indices.length;
-  console.log(loaded);
-  console.log(hasMorePics(loaded, total));
-
-  indices = getPics(loaded, limit, total);
-  loadPics(imagesArray, indices, listEl);
-  loaded += indices.length;
-  console.log(loaded);
-  console.log(hasMorePics(loaded, total));
-
   
+  indices = getPics(loaded, limit, total);
+  console.log(indices);
+  loadPics(imagesArray, indices, listEl);
+  loaded += indices.length;
+  console.log(hasMorePics(loaded, total));
+
+  indices = getPics(loaded, limit, total);
+  console.log(indices);
+  loadPics(imagesArray, indices, listEl);
+  loaded += indices.length;
+  console.log(hasMorePics(loaded, total));
+
+  indices = getPics(loaded, limit, total);
+  console.log(indices);
+  loadPics(imagesArray, indices, listEl);
+  loaded += indices.length;
+  console.log(hasMorePics(loaded, total));
+
   filterSelection("all")
 });
 
