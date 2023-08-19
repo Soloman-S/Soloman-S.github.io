@@ -131,20 +131,7 @@ function getPics(loaded, limit, total) { //returns an array of indicies of image
   //return loaded -> (loaded + limit - 1) or (total - 1), whichever is less
   }
 }
-  
-function oldgetPics(page, limit, total) { //returns an array of indicies of images to load from imagesArray
-  if hasMorePics(page, limit, total) {
-    indices = new Array()
-    for (var i = (page - 1)*limit; i <= page*limit - 1; i++) {
-     indices.push(i);
-    }
-    console.log(indices);
-    return indices;
-    //return loaded -> (loaded + limit - 1) or (total - 1), whichever is less
-    //then increment n_displayed but length of array returned
-  }
-}
-  
+    
 function loadPics(imageArray, indices, imgEl) {
   //load pictures of indices through a loop
 }
