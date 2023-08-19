@@ -25,8 +25,8 @@ window.addEventListener('DOMContentLoaded', () => {
   for (b of buttonArray) {
     const butEl = document.createElement('button');
     butEl.classList.add('btn');
-    butEl.onclick = function(){filterSelection(b.className)}
-    //butEl.addEventListener('click', function(){filterSelection(b.className)});
+    //butEl.onclick = function(){filterSelection(b.className)}
+    butEl.addEventListener('click', filterSelection.bind(null, b.className), false);
     butEl.innerHTML = b.label;
     listEl.appendChild(butEl);
   }
