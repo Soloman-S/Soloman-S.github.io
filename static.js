@@ -35,7 +35,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   // Set up infinite scroll
-  const limit = 4; //number of images loaded per scroll
+  const limit = 14; //number of images loaded per scroll
   let currentPage = 1; //number of pages of images loaded
   let total = imagesArray.length; //total number of images to load
   let loaded = 0; //number of images loaded
