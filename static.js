@@ -4,14 +4,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
   imagesArray = [
-    new Image("images/image1.png", "class1"),
-    new Image("images/image2.jpg", "class2"),
-    new Image("images/image3.jpg", "class1 class3"),
-    new Image("images/image4.jpg", "class3"),
+    new Image("images/image1.png", "class1 art"),
+    new Image("images/image2.jpg", "class2 surprise"),
+    new Image("images/image3.jpg", "class1 class3 surprise"),
+    new Image("images/image4.jpg", "class3 surprise"),
     new Image("images/image5.jpg", "class4"),
     new Image("images/image6.jpg", "class4 class5"),
     new Image("images/image7.jpg", "class1 class4"), 
-    new Image("images/image8.jpg", "class2"), 
+    new Image("images/image8.jpg", "class2 art"), 
     new Image("images/image9.jpg", "class5")
   ]
 
@@ -19,7 +19,8 @@ window.addEventListener('DOMContentLoaded', () => {
     new Button("class1", "Class 1"),
     new Button("class2", "Class 2"),
     new Button("class3", "Class 3"),
-    new Button("class4", "Class 4"),
+    new Button("surprise", "Surprise Photos"),
+    new Button("art", "Art")
   ]
 
   for (b of buttonArray) {
