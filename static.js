@@ -67,7 +67,7 @@ window.addEventListener('DOMContentLoaded', () => {
     } = document.documentElement;
   
     if (scrollTop + clientHeight >= scrollHeight - 5 &&
-        hasMorePics(loaded, total) {
+        hasMorePics(loaded, total)) {
         currentPage++;
         indices = getPics(loaded, limit, total);
         loadPics(imagesArray, indices, listEl);
