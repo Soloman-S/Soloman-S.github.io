@@ -146,7 +146,7 @@ function getPics(loaded, limit, total) { //returns an array of indicies of image
 }
 
 function loadPics(imagesArray, indices, listEl) { //load pictures of indices through a loop
-  for (var i = indices[0]; i < indices[indices.length - 1]; i++) {
+  for (var i = indices[0]; i < indices[indices.length]; i++) {
     const imgEl = document.createElement('img');
     imgEl.classList.add('imageContainer');
     imgEl.setAttribute("src", imagesArray[i].imagePath);
