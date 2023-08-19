@@ -58,7 +58,7 @@ window.addEventListener('DOMContentLoaded', () => {
   loaded += indices.length;
   console.log(hasMorePics(loaded, total));
 
-  indices = getPics(loaded, limit, total);
+  /*indices = getPics(loaded, limit, total);
   console.log(indices);
   loadPics(imagesArray, indices, listEl);
   loaded += indices.length;
@@ -68,7 +68,7 @@ window.addEventListener('DOMContentLoaded', () => {
   console.log(indices);
   loadPics(imagesArray, indices, listEl);
   loaded += indices.length;
-  console.log(hasMorePics(loaded, total));
+  console.log(hasMorePics(loaded, total));*/
 
   filterSelection("all")
 });
