@@ -1,9 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
 
-  const listEl = document.querySelector('.listContainer');
-  var btnContainer = document.getElementById("myBtnContainer");
-
-
+  // DATA ----------------------------------------------------------
   imagesArray = [
     new Image("images/image1.png", "art"),
     new Image("images/image2.jpg", "people surprise"),
@@ -24,15 +21,29 @@ window.addEventListener('DOMContentLoaded', () => {
     new Button("art", "Art")
   ]
 
+  // CODE -------------------------------------------------------
+  const listEl = document.querySelector('.listContainer');
+  var btnContainer = document.getElementById("myBtnContainer");
+  
+  // Generate buttons
   for (b of buttonArray) {
     const butEl = document.createElement('button');
     butEl.classList.add('btn');
-    //butEl.onclick = function(){filterSelection(b.className)}
     butEl.addEventListener('click', filterSelection.bind(null, b.className), false);
     butEl.innerHTML = b.label;
     btnContainer.appendChild(butEl);
   }
-  
+
+  // Set up infinite scroll
+  const limit = 3; //number of images loaded per scroll
+  let currentPage = 1; //number of pages of images loaded
+  let total = imagesArray.length; //total number of images to load
+  let loaded = 0; //number of images loaded
+  let indices = new Array(); //indices of next batch of images to load
+  indices = getPics(loaded, limit, total);
+  //loadPics(imageArray, indices, imgEl);
+  loaded += indices.length;
+  console.log(loaded);
   
   for (i of imagesArray) {
     const imgEl = document.createElement('img');
@@ -56,6 +67,7 @@ window.addEventListener('DOMContentLoaded', () => {
   };
 });
 
+// SET UP FUNCTIONS - dynamic page generation ------------------------------------------------
 function Image(imagePath, classes) {
   this.imagePath = imagePath;
   this.classes = classes;
@@ -66,6 +78,7 @@ function Button(className, label) {
   this.label = label;
 }
 
+// FILTER FUNCTIONS --------------------------------------------------------------------------
 function filterSelection(c) {
   var x, i;
   x = document.getElementsByClassName("imageContainer");
@@ -101,4 +114,37 @@ function removeClass(element, name) {
   element.className = arr1.join(" ");
 }
 
+// INFINITE SCROLL FUNCTIONS -----------------------------------------------------------------
+function hasMorePics(page, limit, total) { // returns TRUE if this is the first request or if there are remaining images to display
+  const startIndex = (page - 1)*limit + 1;
+  return total === 0 || total > startIndex;
+  //if number displayed < length of imagesArray, return true
+}
 
+function getPics(loaded, limit, total) { //returns an array of indicies of images to load from imagesArray
+  indices = new Array()
+  max = min(loaded + limit - 1, total - 1)
+  for (var i = loaded; i <= max; i++) {
+   indices.push(i);
+  console.log(indices);
+  return indices;
+  //return loaded -> (loaded + limit - 1) or (total - 1), whichever is less
+  }
+}
+  
+function oldgetPics(page, limit, total) { //returns an array of indicies of images to load from imagesArray
+  if hasMorePics(page, limit, total) {
+    indices = new Array()
+    for (var i = (page - 1)*limit; i <= page*limit - 1; i++) {
+     indices.push(i);
+    }
+    console.log(indices);
+    return indices;
+    //return loaded -> (loaded + limit - 1) or (total - 1), whichever is less
+    //then increment n_displayed but length of array returned
+  }
+}
+  
+function loadPics(imageArray, indices, imgEl) {
+  //load pictures of indices through a loop
+}
