@@ -35,25 +35,26 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   // Set up infinite scroll
-  const limit = 3; //number of images loaded per scroll
+  const limit = 4; //number of images loaded per scroll
   let currentPage = 1; //number of pages of images loaded
   let total = imagesArray.length; //total number of images to load
   let loaded = 0; //number of images loaded
   let indices = new Array(); //indices of next batch of images to load
   indices = getPics(loaded, limit, total);
-  //loadPics(imagesArray, indices, listEl);
+  loadPics(imagesArray, indices, listEl);
   loaded += indices.length;
   console.log(loaded);
+  console.log(hasMorePics(loaded, total);
   
-  for (i of imagesArray) {
-    const imgEl = document.createElement('img');
-    imgEl.classList.add('imageContainer');
-    imgEl.setAttribute("src", i.imagePath);
-    addClass(imgEl, i.classes);
-    listEl.appendChild(imgEl);
-  }
+  //for (i of imagesArray) {
+  //  const imgEl = document.createElement('img');
+  //  imgEl.classList.add('imageContainer');
+  //  imgEl.setAttribute("src", i.imagePath);
+  //  addClass(imgEl, i.classes);
+  //  listEl.appendChild(imgEl);
+  //}
 
-  loadPics(imagesArray, indices, listEl);
+
   
   filterSelection("all")
   
@@ -116,25 +117,17 @@ function removeClass(element, name) {
 }
 
 // INFINITE SCROLL FUNCTIONS -----------------------------------------------------------------
-function hasMorePics(page, limit, total) { // returns TRUE if this is the first request or if there are remaining images to display
-  const startIndex = (page - 1)*limit + 1;
-  return total === 0 || total > startIndex;
+function hasMorePics(loaded, total) { // returns TRUE if this is the first request or if there are remaining images to display
+  return (loaded < total);
   //if number displayed < length of imagesArray, return true
 }
 
 function getPics(loaded, limit, total) { //returns an array of indicies of images to load from imagesArray
   indices = new Array()
   max = Math.min(loaded + limit - 1, total - 1)
-  //console.log("Max");
-  //console.log(loaded + limit - 1);
-  //console.log(total - 1);
-  //console.log(max);
-  console.log("Loop");
   for (var i = loaded; i <= max; i++) {
-    console.log(i);
     indices.push(i);
   }
-  console.log(indices);
   return indices;
   //return loaded -> (loaded + limit - 1) or (total - 1), whichever is less
 }
