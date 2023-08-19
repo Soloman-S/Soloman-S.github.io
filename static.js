@@ -26,8 +26,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const butEl = document.createElement('button');
     butEl.classList.add('but');
     butEl.onclick = "filterSelection(" + b.className + ")"
-    addClass(imgEl, file.classes);
-    listEl.appendChild(imgEl);
+    listEl.appendChild(butEl);
   }
   
   
