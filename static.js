@@ -59,6 +59,23 @@ window.addEventListener('DOMContentLoaded', () => {
   loaded += indices.length;
 
 
+  window.addEventListener('scroll', () => {
+    const {
+        scrollTop,
+        scrollHeight,
+        clientHeight
+    } = document.documentElement;
+  
+    if (scrollTop + clientHeight >= scrollHeight - 5 &&
+        hasMorePics(loaded, total) {
+        currentPage++;
+        indices = getPics(loaded, limit, total);
+        loadPics(imagesArray, indices, listEl);
+        loaded += indices.length;
+    }
+  }, {
+    passive: true
+  });
 
   //filterSelection("all")
 });
