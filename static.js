@@ -44,7 +44,7 @@ window.addEventListener('DOMContentLoaded', () => {
   loadPics(imagesArray, indices, listEl);
   loaded += indices.length;
   console.log(loaded);
-  console.log(hasMorePics(loaded, total);
+  console.log(hasMorePics(loaded, total));
   
   //for (i of imagesArray) {
   //  const imgEl = document.createElement('img');
