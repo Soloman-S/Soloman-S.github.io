@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
     new Image("images/image9.jpg", "show outside")
   ]
 
-  //apply filters here
+  //apply filters here??? Reapply regularly???
 
   buttonArray = [
     new Button("class1", "Class 1"),
@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', () => {
     new Button("art", "Art")
   ]
 
-  // CODE -------------------------------------------------------
+  // CODE ----------------------------------------------------------
   const listEl = document.querySelector('.listContainer');
   var btnContainer = document.getElementById("myBtnContainer");
   
@@ -60,7 +60,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-  filterSelection("all")
+  //filterSelection("all")
 });
 
   
@@ -74,7 +74,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-// SET UP FUNCTIONS - dynamic page generation ------------------------------------------------
+// SET UP FUNCTIONS - dynamic page generation ----------------------
 function Image(imagePath, classes) {
   this.imagePath = imagePath;
   this.classes = classes;
@@ -85,7 +85,7 @@ function Button(className, label) {
   this.label = label;
 }
 
-// FILTER FUNCTIONS --------------------------------------------------------------------------
+// FILTER FUNCTIONS ------------------------------------------------
 function filterSelection(c) {
   var images, i;
   images = document.getElementsByClassName("imageContainer");
