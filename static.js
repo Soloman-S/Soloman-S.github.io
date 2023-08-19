@@ -34,8 +34,21 @@ window.addEventListener('DOMContentLoaded', () => {
     btnContainer.appendChild(butEl);
   }
 
+  // Add active class to the current control button (highlight it)
+  // Consider adding into previous loop
+  var btns = btnContainer.getElementsByClassName("btn");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function() {
+      var current = document.getElementsByClassName("active");
+      current[0].className = current[0].className.replace(" active", "");
+      this.className += " active";
+    });
+  };
+  
+});
+
   // Set up infinite scroll
-  const limit = 14; //number of images loaded per scroll
+  const limit = 4; //number of images loaded per scroll
   let currentPage = 1; //number of pages of images loaded
   let total = imagesArray.length; //total number of images to load
   let loaded = 0; //number of images loaded
@@ -45,6 +58,16 @@ window.addEventListener('DOMContentLoaded', () => {
   loaded += indices.length;
   console.log(loaded);
   console.log(hasMorePics(loaded, total));
+
+  indices = getPics(loaded, limit, total);
+  loadPics(imagesArray, indices, listEl);
+  loaded += indices.length;
+  console.log(loaded);
+  console.log(hasMorePics(loaded, total));
+
+
+  
+
   
   //for (i of imagesArray) {
   //  const imgEl = document.createElement('img');
@@ -58,16 +81,7 @@ window.addEventListener('DOMContentLoaded', () => {
   
   filterSelection("all")
   
-  // Add active class to the current control button (highlight it)
-  var btns = btnContainer.getElementsByClassName("btn");
-  for (var i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", function() {
-      var current = document.getElementsByClassName("active");
-      current[0].className = current[0].className.replace(" active", "");
-      this.className += " active";
-    });
-  };
-});
+
 
 // SET UP FUNCTIONS - dynamic page generation ------------------------------------------------
 function Image(imagePath, classes) {
@@ -103,7 +117,6 @@ function addClass(element, name) {
   }
 }
 
-// Hide elements that are not selected
 function removeClass(element, name) {
   var i, arr1, arr2;
   arr1 = element.className.split(" ");
@@ -117,7 +130,7 @@ function removeClass(element, name) {
 }
 
 // INFINITE SCROLL FUNCTIONS -----------------------------------------------------------------
-function hasMorePics(loaded, total) { // returns TRUE if this is the first request or if there are remaining images to display
+function hasMorePics(loaded, total) { // returns TRUE if there are remaining images to display
   return (loaded < total);
   //if number displayed < length of imagesArray, return true
 }
@@ -129,7 +142,6 @@ function getPics(loaded, limit, total) { //returns an array of indicies of image
     indices.push(i);
   }
   return indices;
-  //return loaded -> (loaded + limit - 1) or (total - 1), whichever is less
 }
 
 function loadPics(imagesArray, indices, listEl) { //load pictures of indices through a loop
@@ -140,5 +152,5 @@ function loadPics(imagesArray, indices, listEl) { //load pictures of indices thr
     addClass(imgEl, imagesArray[i].classes);
     listEl.appendChild(imgEl);
   }
-  //add return of number loaded
+  //consider adding return of number loaded
 }
