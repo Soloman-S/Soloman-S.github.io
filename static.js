@@ -146,4 +146,6 @@ function loadPics(imageArray, indices, listEl) { //load pictures of indices thro
     imgEl.setAttribute("src", imageArray[i].imagePath);
     addClass(imgEl, imageArray[i].classes);
     listEl.appendChild(imgEl);
+  }
+  //add return of number loaded
 }
