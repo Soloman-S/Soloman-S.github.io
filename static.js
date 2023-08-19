@@ -123,7 +123,7 @@ function hasMorePics(page, limit, total) { // returns TRUE if this is the first 
 
 function getPics(loaded, limit, total) { //returns an array of indicies of images to load from imagesArray
   indices = new Array()
-  max = min(loaded + limit - 1, total - 1)
+  max = Math.min(loaded + limit - 1, total - 1)
   for (var i = loaded; i <= max; i++) {
    indices.push(i);
   console.log(indices);
