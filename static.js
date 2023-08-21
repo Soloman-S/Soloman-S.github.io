@@ -2,7 +2,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // DATA ----------------------------------------------------------
   imagesArray = [
-    new Image("images/image1.png", "art"),
+    new Image("images/image1.png", "show art"),
     new Image("images/image2.jpg", "show people surprise"),
     new Image("images/image3.jpg", "show people surprise"),
     new Image("images/image4.jpg", "show people surprise"),
@@ -10,9 +10,9 @@ window.addEventListener('DOMContentLoaded', () => {
     new Image("images/image6.jpg", "show outside people"),
     new Image("images/image7.jpg", "show"), 
     new Image("images/image8.jpg", "show art"), 
-    new Image("images/image9.jpg", "show outside")
-    new Image("20230729153502_IMG_0124.JPG", "show outside")
-  new Image("_DSC0318.JPG", "show outside")
+    new Image("images/image9.jpg", "show outside"),
+    new Image("20230729153502_IMG_0124.JPG", "show outside"),
+    new Image("_DSC0318.JPG", "show outside"),
     new Image("_DSC0431.JPG", "show outside")
   ]
 
