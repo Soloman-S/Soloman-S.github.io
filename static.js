@@ -11,6 +11,9 @@ window.addEventListener('DOMContentLoaded', () => {
     new Image("images/image7.jpg", "show"), 
     new Image("images/image8.jpg", "show art"), 
     new Image("images/image9.jpg", "show outside")
+    new Image("20230729153502_IMG_0124.JPG", "show outside")
+  new Image("_DSC0318.JPG", "show outside")
+    new Image("_DSC0431.JPG", "show outside")
   ]
 
   //apply filters here??? Reapply regularly???
