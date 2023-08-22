@@ -37,12 +37,18 @@ window.addEventListener('DOMContentLoaded', () => {
     const butEl = document.createElement('button');
     butEl.classList.add('btn');
     butEl.addEventListener('click', filterSelection.bind(null, b.className), false);
+    butEl.addEventListener('click', function() { // Add active class to the current control button (highlight it)
+      var current = document.getElementsByClassName('active');
+      current[0].className = current[0].className.replace(' active', "");
+      this.className += " active";
+    });
     butEl.innerHTML = b.label;
     btnContainer.appendChild(butEl);
   }
 
   // Add active class to the current control button (highlight it)
   // Consider adding into previous loop
+  /*
   var btns = btnContainer.getElementsByClassName("btn");
   for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function() {
@@ -51,6 +57,7 @@ window.addEventListener('DOMContentLoaded', () => {
       this.className += " active";
     });
   };
+  */
   
   // Set up infinite scroll
   const limit = 4; //number of images loaded per scroll
@@ -109,7 +116,8 @@ function filterSelection(c) {
   if (c == "all") c = "";
   // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
   for (i = 0; i < images.length; i++) {
-    removeClass(images[i], "show");
+    //removeClass(images[i], "show");
+    images[i].classList.add('show');
     //if (images[i].className.indexOf(c) > -1) addClass(images[i], "show");
     if (images[i].className.indexOf(c) > -1) images[i].classList.add('show');
   }
@@ -118,6 +126,7 @@ function filterSelection(c) {
 // function updateFilter - if image classes intersects with filterSelect then remove show, otherwise add show
   // eventually add second filtering for settings from sliding bars
 
+/*
 function addClass(element, name) {
   var i, arr1, arr2;
   arr1 = element.className.split(" ");
@@ -139,7 +148,7 @@ function removeClass(element, name) {
     }
   }
   element.className = arr1.join(" ");
-}
+}*/
 
 // INFINITE SCROLL FUNCTIONS -----------------------------------------------------------------
 function hasMorePics(loaded, total) { // returns TRUE if there are remaining images to display
