@@ -36,8 +36,9 @@ window.addEventListener('DOMContentLoaded', () => {
   for (b of buttonArray) {
     const butEl = document.createElement('button');
     butEl.classList.add('btn');
-    butEl.addEventListener('click', filterSelection.bind(null, b.className), false);
+    //butEl.addEventListener('click', filterSelection.bind(null, b.className), false);
     butEl.addEventListener('click', function() { // Add active class to the current control button (highlight it)
+      filterSelection(b.className);
       var current = document.getElementsByClassName('active');
       current[0].className = current[0].className.replace(' active', "");
       this.className += " active";
