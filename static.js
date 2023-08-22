@@ -12,8 +12,8 @@ window.addEventListener('DOMContentLoaded', () => {
     new Image("images/image8.jpg", "show art"), 
     new Image("images/image9.jpg", "show outside"),
     new Image("images/20230729153502_IMG_0124.JPG", "show outside"),
-    new Image("images/_DSC0318.JPG", "show outside"),
-    new Image("images/_DSC0431.JPG", "show outside")
+    new Image("images/DSC0318.JPG", "show outside"),
+    new Image("images/DSC0431.JPG", "show outside")
   ]
 
   //apply filters here??? Reapply regularly???
@@ -29,6 +29,8 @@ window.addEventListener('DOMContentLoaded', () => {
   // CODE ----------------------------------------------------------
   const listEl = document.querySelector('.listContainer');
   var btnContainer = document.getElementById("myBtnContainer");
+  
+  //filterList empty set // currently active filters
   
   // Generate buttons
   for (b of buttonArray) {
@@ -83,16 +85,6 @@ window.addEventListener('DOMContentLoaded', () => {
   //filterSelection("all")
 });
 
-  
-  //for (i of imagesArray) {
-  //  const imgEl = document.createElement('img');
-  //  imgEl.classList.add('imageContainer');
-  //  imgEl.setAttribute("src", i.imagePath);
-  //  addClass(imgEl, i.classes);
-  //  listEl.appendChild(imgEl);
-  //}
-
-
 
 // SET UP FUNCTIONS - dynamic page generation ----------------------
 function Image(imagePath, classes) {
@@ -107,6 +99,11 @@ function Button(className, label) {
 
 // FILTER FUNCTIONS ------------------------------------------------
 function filterSelection(c) {
+
+  // called when a filter button pressed
+  // takes in filterList and the newly pressed filter
+  // toggles the new filter, then loops through all loaded images and runs updateFilter
+  
   var images, i;
   images = document.getElementsByClassName("imageContainer");
   if (c == "all") c = "";
@@ -116,6 +113,9 @@ function filterSelection(c) {
     if (images[i].className.indexOf(c) > -1) addClass(images[i], "show");
   }
 }
+
+// function updateFilter - if image classes intersects with filterSelect then remove show, otherwise add show
+  // eventually add second filtering for settings from sliding bars
 
 function addClass(element, name) {
   var i, arr1, arr2;
@@ -143,7 +143,6 @@ function removeClass(element, name) {
 // INFINITE SCROLL FUNCTIONS -----------------------------------------------------------------
 function hasMorePics(loaded, total) { // returns TRUE if there are remaining images to display
   return (loaded < total);
-  //if number displayed < length of imagesArray, return true
 }
 
 function getPics(loaded, limit, total) { //returns an array of indicies of images to load from imagesArray
@@ -161,6 +160,8 @@ function loadPics(imagesArray, indices, listEl) { //load pictures of indices thr
     imgEl.classList.add('imageContainer');
     imgEl.setAttribute("src", imagesArray[i].imagePath);
     addClass(imgEl, imagesArray[i].classes);
+    // if should be active then add 'show' as well
+    // concern is changing filter while loading
     listEl.appendChild(imgEl);
   }
   //consider adding return of number loaded
