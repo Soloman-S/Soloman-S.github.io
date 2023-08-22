@@ -38,7 +38,7 @@ window.addEventListener('DOMContentLoaded', () => {
     butEl.classList.add('btn');
     //butEl.addEventListener('click', filterSelection.bind(null, b.className), false);
     butEl.addEventListener('click', function() { // Add active class to the current control button (highlight it)
-      filterSelection(b.className);
+      filterSelection.bind(null, b.className);
       var current = document.getElementsByClassName('active');
       current[0].className = current[0].className.replace(' active', "");
       this.className += " active";
@@ -117,8 +117,8 @@ function filterSelection(c) {
   if (c == "all") c = "";
   // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
   for (i = 0; i < images.length; i++) {
-    removeClass(images[i], "show");
-    //images[i].classList.add('show');
+    //removeClass(images[i], "show");
+    images[i].classList.remove('show');
     //if (images[i].className.indexOf(c) > -1) addClass(images[i], "show");
     if (images[i].className.indexOf(c) > -1) images[i].classList.add('show');
   }
