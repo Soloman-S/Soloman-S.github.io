@@ -110,7 +110,8 @@ function filterSelection(c) {
   // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
   for (i = 0; i < images.length; i++) {
     removeClass(images[i], "show");
-    if (images[i].className.indexOf(c) > -1) addClass(images[i], "show");
+    //if (images[i].className.indexOf(c) > -1) addClass(images[i], "show");
+    if (images[i].className.indexOf(c) > -1) images[i].classList.add('show');
   }
 }
 
@@ -159,8 +160,10 @@ function loadPics(imagesArray, indices, listEl) { //load pictures of indices thr
     const imgEl = document.createElement('img');
     imgEl.classList.add('imageContainer');
     imgEl.setAttribute("src", imagesArray[i].imagePath);
-    addClass(imgEl, imagesArray[i].classes);
-    // if should be active then add 'show' as well
+    //addClass(imgEl, imagesArray[i].classes);
+    imgEl.classList.add(...imagesArray[i].classes);
+    
+    // To be implemented: if should be active then add 'show' as well
     // concern is changing filter while loading
     listEl.appendChild(imgEl);
   }
