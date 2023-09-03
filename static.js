@@ -44,7 +44,7 @@ window.addEventListener('DOMContentLoaded', () => {
       var current = document.getElementsByClassName('active');
       current[0].className = current[0].className.replace(' active', "");
       this.className += " active";
-    }.bind(null, b));
+    }.bind(butEl, b));
     butEl.innerHTML = b.label;
     btnContainer.appendChild(butEl);
   }
