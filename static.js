@@ -38,11 +38,11 @@ window.addEventListener('DOMContentLoaded', () => {
     butEl.classList.add('btn');
     //butEl.addEventListener('click', filterSelection.bind(null, b.className), false);
     butEl.addEventListener('click', function() { // Add active class to the current control button (highlight it)
-      console.log("test");
-      //filterSelection.bind(null, b.className);
-      //var current = document.getElementsByClassName('active');
-      //current[0].className = current[0].className.replace(' active', "");
-      //this.className += " active";
+      //console.log("test");
+      filterSelection.bind(null, b.className);
+      var current = document.getElementsByClassName('active');
+      current[0].className = current[0].className.replace(' active', "");
+      this.className += " active";
     });
     butEl.innerHTML = b.label;
     btnContainer.appendChild(butEl);
@@ -112,7 +112,8 @@ function filterSelection(c) {
   // called when a filter button pressed
   // takes in filterList and the newly pressed filter
   // toggles the new filter, then loops through all loaded images and runs updateFilter
-  
+
+  console.log("in filterSelection function");
   var images, i;
   images = document.getElementsByClassName("imageContainer");
   if (c == "all") c = "";
