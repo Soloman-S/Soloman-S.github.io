@@ -38,10 +38,11 @@ window.addEventListener('DOMContentLoaded', () => {
     butEl.classList.add('btn');
     //butEl.addEventListener('click', filterSelection.bind(null, b.className), false);
     butEl.addEventListener('click', function() { // Add active class to the current control button (highlight it)
-      filterSelection.bind(null, b.className);
-      var current = document.getElementsByClassName('active');
-      current[0].className = current[0].className.replace(' active', "");
-      this.className += " active";
+      console.log("test");
+      //filterSelection.bind(null, b.className);
+      //var current = document.getElementsByClassName('active');
+      //current[0].className = current[0].className.replace(' active', "");
+      //this.className += " active";
     });
     butEl.innerHTML = b.label;
     btnContainer.appendChild(butEl);
