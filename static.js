@@ -34,21 +34,19 @@ window.addEventListener('DOMContentLoaded', () => {
   
   // Generate buttons
   for (b of buttonArray) {
-    (function () {
-      const butEl = document.createElement('button');
-      butEl.classList.add('btn');
-      //butEl.addEventListener('click', filterSelection.bind(null, b.className), false);
-      butEl.addEventListener('click', function() { // Add active class to the current control button (highlight it)
-        //console.log("test");
-        //filterSelection.bind(null, b.className);
-        filterSelection(b.className);
-        var current = document.getElementsByClassName('active');
-        current[0].className = current[0].className.replace(' active', "");
-        this.className += " active";
-      });
-      butEl.innerHTML = b.label;
-      btnContainer.appendChild(butEl);
-    });
+    const butEl = document.createElement('button');
+    butEl.classList.add('btn');
+    //butEl.addEventListener('click', filterSelection.bind(null, b.className), false);
+    butEl.addEventListener('click', function() { // Add active class to the current control button (highlight it)
+      console.log("test");
+      filterSelection.bind(null, b.className);
+      filterSelection(b.className);
+      var current = document.getElementsByClassName('active');
+      current[0].className = current[0].className.replace(' active', "");
+      this.className += " active";
+    }.bind(null, b));
+    butEl.innerHTML = b.label;
+    btnContainer.appendChild(butEl);
   }
 
   // Add active class to the current control button (highlight it)
@@ -110,6 +108,16 @@ function Button(className, label) {
 }
 
 // FILTER FUNCTIONS ------------------------------------------------
+
+function changeButton(b) {
+  //console.log("test");
+  //filterSelection.bind(null, b.className);
+  filterSelection(b.className);
+  var current = document.getElementsByClassName('active');
+  current[0].className = current[0].className.replace(' active', "");
+  //this.className += " active";
+}
+
 function filterSelection(c) {
 
   // called when a filter button pressed
