@@ -38,7 +38,7 @@ window.addEventListener('DOMContentLoaded', () => {
       const butEl = document.createElement('button');
       butEl.classList.add('btn');
       //butEl.addEventListener('click', filterSelection.bind(null, b.className), false);
-      butEl.addEventListener('click', function(b) { // Add active class to the current control button (highlight it)
+      butEl.addEventListener('click', function() { // Add active class to the current control button (highlight it)
         //console.log("test");
         //filterSelection.bind(null, b.className);
         filterSelection(b.className);
