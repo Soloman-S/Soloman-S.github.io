@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const listEl = document.querySelector('.listContainer');
   var btnContainer = document.getElementById("myBtnContainer");
   
-  //filterList empty set // currently active filters
+  const filterList = new Set(); // currently active filters. If empty then show all, otherwise show those which int
   
   // Generate buttons
   for (b of buttonArray) {
@@ -113,9 +113,33 @@ function filterSelection(c) {
   }
 }
 
-// function updateFilter - if image classes intersects with filterSelect then remove show, otherwise add show
-  // ?boolean logic
-  // eventually add second filtering for settings from sliding bars
+/*
+// changes filterList and loops through all images to display ones that overlap with list
+// If there are no filters then will show all images
+// ?boolean logic
+// eventually add second filtering for settings from sliding bars
+function updateFilter(newFilter, filterList) {
+  images = document.getElementsByClassName("imageContainer");
+  if (filterList.has(newFilter)) {
+    filterList.delete(newFilter)
+  } else {
+    filterList.add(newFilter)
+  }
+if (filterList.size == 0) {
+  for (image of images) {
+    image.classList.add('show');
+  }
+} else {
+  for (image of images) {
+    if (image classes (?new Set(...image.classList) intersects with filterList) { PSEUDOCODE
+      image.classList.add('show');
+    } else {
+      image.classList.remove('show');
+    }
+  }
+}
+*/
+
 
 //?redundant
 function addClass(element, name) {
