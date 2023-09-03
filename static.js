@@ -36,35 +36,19 @@ window.addEventListener('DOMContentLoaded', () => {
   for (b of buttonArray) {
     const butEl = document.createElement('button');
     butEl.classList.add('btn');
-    //butEl.addEventListener('click', filterSelection.bind(null, b.className), false);
     butEl.addEventListener('click', function(b) { // Add active class to the current control button (highlight it)
-      console.log("test");
-      //filterSelection.bind(null, b.className);
       filterSelection(b.className);
       var current = document.getElementsByClassName('active');
       current[0].className = current[0].className.replace(' active', "");
-      this.className += " active";
+      this.className += " active"; //?change to native addClass
     }.bind(butEl, b));
     butEl.innerHTML = b.label;
     btnContainer.appendChild(butEl);
   }
-
-  // Add active class to the current control button (highlight it)
-  // Consider adding into previous loop
-  /*
-  var btns = btnContainer.getElementsByClassName("btn");
-  for (var i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", function() {
-      var current = document.getElementsByClassName("active");
-      current[0].className = current[0].className.replace(" active", "");
-      this.className += " active";
-    });
-  };
-  */
   
   // Set up infinite scroll
   const limit = 4; //number of images loaded per scroll
-  let currentPage = 1; //number of pages of images loaded
+  let currentPage = 1; //number of pages of images loaded. Does nothing
   let total = imagesArray.length; //total number of images to load
   let loaded = 0; //number of images loaded
   let indices = new Array(); //indices of next batch of images to load
@@ -72,7 +56,6 @@ window.addEventListener('DOMContentLoaded', () => {
   indices = getPics(loaded, limit, total);
   loadPics(imagesArray, indices, listEl);
   loaded += indices.length;
-
 
   window.addEventListener('scroll', () => {
     const {
@@ -109,22 +92,15 @@ function Button(className, label) {
 
 // FILTER FUNCTIONS ------------------------------------------------
 
-function changeButton(b) {
-  //console.log("test");
-  //filterSelection.bind(null, b.className);
-  filterSelection(b.className);
-  var current = document.getElementsByClassName('active');
-  current[0].className = current[0].className.replace(' active', "");
-  //this.className += " active";
-}
 
 function filterSelection(c) {
 
+  // NEW PLAN TO BE IMPLEMENTED
   // called when a filter button pressed
   // takes in filterList and the newly pressed filter
   // toggles the new filter, then loops through all loaded images and runs updateFilter
 
-  console.log("in filterSelection function");
+
   var images, i;
   images = document.getElementsByClassName("imageContainer");
   if (c == "all") c = "";
@@ -138,9 +114,10 @@ function filterSelection(c) {
 }
 
 // function updateFilter - if image classes intersects with filterSelect then remove show, otherwise add show
+  // ?boolean logic
   // eventually add second filtering for settings from sliding bars
 
-
+//?redundant
 function addClass(element, name) {
   var i, arr1, arr2;
   arr1 = element.className.split(" ");
@@ -152,6 +129,7 @@ function addClass(element, name) {
   }
 }
 
+//?redundant
 function removeClass(element, name) {
   var i, arr1, arr2;
   arr1 = element.className.split(" ");
