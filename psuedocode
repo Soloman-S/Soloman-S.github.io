@@ -1,0 +1,15 @@
+On scroll
+  new_loaded = 0
+  while new_loaded < N
+    load(i, hidden)
+    if i is in filters
+      display(i)
+      new_loaded++
+
+On press
+  Update filters
+  For el in page
+    if filter
+      show
+    else
+      hide
