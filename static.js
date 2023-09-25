@@ -53,8 +53,9 @@ window.addEventListener('DOMContentLoaded', () => {
   let indices = new Array(); //indices of next batch of images to load
   
   indices = getPics(loaded, limit, total);
-  loadPics(imagesArray, indices, listEl, filterList);
-  loaded += indices.length;
+  //loadPics(imagesArray, indices, listEl, filterList);
+  //loaded += indices.length;
+  loaded = loadPics(imagesArray, loaded, limit, listEl, filterList);
 
   window.addEventListener('scroll', () => {
     const {
@@ -67,8 +68,9 @@ window.addEventListener('DOMContentLoaded', () => {
         hasMorePics(loaded, total)) {
         currentPage++;
         indices = getPics(loaded, limit, total);
-        loadPics(imagesArray, indices, listEl, filterList);
-        loaded += indices.length;
+        //loadPics(imagesArray, indices, listEl, filterList);
+        loaded = loadPics(imagesArray, loaded, limit, listEl, filterList);
+        //loaded += indices.length;
     }
   }, {
     passive: true
@@ -91,23 +93,14 @@ function Button(className, label) {
 
 // FILTER FUNCTIONS ------------------------------------------------
 
-
+// deprecated
 function filterSelection(c) {
-
-  // NEW PLAN TO BE IMPLEMENTED
-  // called when a filter button pressed
-  // takes in filterList and the newly pressed filter
-  // toggles the new filter, then loops through all loaded images and runs updateFilter
-
-
   var images, i;
   images = document.getElementsByClassName("imageContainer");
   if (c == "all") c = "";
   // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
   for (i = 0; i < images.length; i++) {
-    //removeClass(images[i], "show");
     images[i].classList.remove('show');
-    //if (images[i].className.indexOf(c) > -1) addClass(images[i], "show");
     if (images[i].className.indexOf(c) > -1) images[i].classList.add('show');
   }
 }
@@ -139,7 +132,6 @@ function updateFilter(newFilter, filterList) {
   }
 }
 
-
 function intersection(classlist, filterList) {
   overlap = false;
   for (el of filterList) {
@@ -147,7 +139,6 @@ function intersection(classlist, filterList) {
       overlap = true;
     }
   }
-  //?new Set(...image.classList) intersects with filterList
   return overlap;
 }
 
@@ -192,19 +183,48 @@ function getPics(loaded, limit, total) { //returns an array of indicies of image
   return indices;
 }
 
-function loadPics(imagesArray, indices, listEl, filterList) { //load pictures of indices through a loop
+function oldloadPics(imagesArray, indices, listEl, filterList) { //load pictures of indices through a loop
   for (var i = indices[0]; i <= indices[indices.length - 1]; i++) {
     const imgEl = document.createElement('img');
     imgEl.classList.add('imageContainer');
     imgEl.setAttribute("src", imagesArray[i].imagePath);
     imgEl.classList.add(...imagesArray[i].classes);
     if (filterList.size == 0 || intersection(imgEl.classList, filterList)) {
-      imgEl.classList.add("show");
+      imgEl.classList.add("show"); // concern is changing filter while loading
     }
-    
-    // To be implemented: if should be active then add 'show' as well
-    // concern is changing filter while loading
     listEl.appendChild(imgEl);
   }
+  //consider adding return of number loaded
+}
+
+function loadPics(imagesArray, loaded, limit, listEl, filterList) { //load pictures of indices through a loop
+  var i = loaded;
+  var j = 0;
+  while (j < limit) {
+    const imgEl = document.createElement('img');
+    imgEl.classList.add('imageContainer');
+    imgEl.setAttribute("src", imagesArray[i].imagePath);
+    imgEl.classList.add(...imagesArray[i].classes);
+    if (filterList.size == 0 || intersection(imgEl.classList, filterList)) {
+      imgEl.classList.add("show"); // concern is changing filter while loading
+      j++;
+    }
+    listEl.appendChild(imgEl);
+    i++;
+  }
+  return i;
+
+  /*
+  for (var i = indices[0]; i <= indices[indices.length - 1]; i++) {
+    const imgEl = document.createElement('img');
+    imgEl.classList.add('imageContainer');
+    imgEl.setAttribute("src", imagesArray[i].imagePath);
+    imgEl.classList.add(...imagesArray[i].classes);
+    if (filterList.size == 0 || intersection(imgEl.classList, filterList)) {
+      imgEl.classList.add("show"); // concern is changing filter while loading
+    }
+    listEl.appendChild(imgEl);
+  }
+  */
   //consider adding return of number loaded
 }
