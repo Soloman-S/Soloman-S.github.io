@@ -4,9 +4,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
     imagesArray = [
     new Image("images/image1.png", ["art"]),
-    new Image("images/image2.jpg", ["people", "surprise"]),
-    new Image("images/image3.jpg", ["people", "surprise"]),
-    new Image("images/image4.jpg", ["people", "surprise"]),
+    new Image("images/image2.jpg", ["people", "surprise photos"]),
+    new Image("images/image3.jpg", ["people", "surprise photos"]),
+    new Image("images/image4.jpg", ["people", "surprise photos"]),
     new Image("images/image5.jpg", ["outside"]),
     new Image("images/image6.jpg", ["outside", "people"]),
     new Image("images/image7.jpg", []), 
@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', () => {
     new Button("emptyClass", "Empty Class"),
     new Button("outside", "Outside"),
     new Button("people", "People"),
-    new Button("surprise", "Surprise Photos"),
+    new Button("surprise photos", "Surprise Photos"),
     new Button("art", "Art")
   ]
 
