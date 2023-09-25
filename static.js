@@ -178,6 +178,7 @@ function loadPics(imagesArray, loaded, limit, listEl, filterList) {
     listEl.appendChild(imgEl);
     const textEl = document.createElement('div');
     textEl.classList.add('middle');
+    textEl.innerHTML = "Test inner";
     imgEl.appendChild(textEl);
     i++;
   }
