@@ -86,7 +86,7 @@ window.addEventListener('DOMContentLoaded', () => {
         hasMorePics(loaded, total)) {
         currentPage++;
         indices = getPics(loaded, limit, total);
-        loadPics(imagesArray, indices, listEl);
+        loadPics(imagesArray, indices, listEl, filterList);
         loaded += indices.length;
     }
   }, {
@@ -211,7 +211,7 @@ function getPics(loaded, limit, total) { //returns an array of indicies of image
   return indices;
 }
 
-function loadPics(imagesArray, indices, listEl) { //load pictures of indices through a loop
+function loadPics(imagesArray, indices, listEl, filterList) { //load pictures of indices through a loop
   for (var i = indices[0]; i <= indices[indices.length - 1]; i++) {
     const imgEl = document.createElement('img');
     imgEl.classList.add('imageContainer');
