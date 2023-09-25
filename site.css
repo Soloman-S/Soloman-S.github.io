@@ -1,5 +1,6 @@
 body {
-  background-color: lightblue;
+  /*background-color: lightblue;*/
+  background: url(/styles/denim.png) repeat 0 0;
 }
 
 h1 {
