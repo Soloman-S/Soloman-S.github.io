@@ -72,7 +72,7 @@ window.addEventListener('DOMContentLoaded', () => {
   let indices = new Array(); //indices of next batch of images to load
   
   indices = getPics(loaded, limit, total);
-  loadPics(imagesArray, indices, listEl);
+  loadPics(imagesArray, indices, listEl, filterList);
   loaded += indices.length;
 
   window.addEventListener('scroll', () => {
