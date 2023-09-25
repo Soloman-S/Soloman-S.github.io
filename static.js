@@ -1,6 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
 
   // DATA ----------------------------------------------------------
+  /*
   imagesArray = [
     new Image("images/image1.png", ["show", "art"]),
     new Image("images/image2.jpg", ["show", "people", "surprise"]),
@@ -14,6 +15,22 @@ window.addEventListener('DOMContentLoaded', () => {
     new Image("images/20230729153502_IMG_0124.JPG", ["show", "outside"]),
     new Image("images/DSC0318.JPG", ["show", "outside"]),
     new Image("images/DSC0431.JPG", ["show", "outside"])
+  ]
+  */
+
+    imagesArray = [
+    new Image("images/image1.png", ["art"]),
+    new Image("images/image2.jpg", ["people", "surprise"]),
+    new Image("images/image3.jpg", ["people", "surprise"]),
+    new Image("images/image4.jpg", ["people", "surprise"]),
+    new Image("images/image5.jpg", ["outside"]),
+    new Image("images/image6.jpg", ["outside", "people"]),
+    new Image("images/image7.jpg", ["showy"]), 
+    new Image("images/image8.jpg", ["art"]), 
+    new Image("images/image9.jpg", ["outside"]),
+    new Image("images/20230729153502_IMG_0124.JPG", ["outside"]),
+    new Image("images/DSC0318.JPG", ["outside"]),
+    new Image("images/DSC0431.JPG", ["outside"])
   ]
 
   //apply filters here??? Reapply regularly???
