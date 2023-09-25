@@ -176,6 +176,8 @@ function loadPics(imagesArray, loaded, limit, listEl, filterList) {
       j++;
     }
     listEl.appendChild(imgEl);
+    const textEl = document.createElement("middle");
+    imgEl.appendChild(textEl);
     i++;
   }
   return i;
