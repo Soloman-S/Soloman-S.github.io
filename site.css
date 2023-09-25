@@ -1,5 +1,4 @@
 body {
-  /*background-color: lightblue;*/
   background: url(/styles/denim.png) repeat 0 0;
 }
 
@@ -11,8 +10,8 @@ h1 {
 .imageContainer {
   display: none;
   max-width: 50%;
-  border: 4px solid #ddd;
-  border-radius: 16px;
+  border: 2px solid #ddd;
+  /*border-radius: 16px;*/
   padding: 4px;
   margin-left: auto;
   margin-right: auto;
