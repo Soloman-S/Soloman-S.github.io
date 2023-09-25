@@ -128,7 +128,7 @@ function intersection(classlist, jsonArray, filterList) {
   
   overlap = false;
   for (el of filterList) {
-    if (classlist.contains(el)) {
+    if (classes.includes(el)) {
       overlap = true;
     }
   }
@@ -158,33 +158,6 @@ function jsontersection(jsonArray, filterList) {
 function hasMorePics(loaded, total) { // returns TRUE if there are remaining images to display
   return (loaded < total);
 }
-
-/*
-function getPics(loaded, limit, total) { //returns an array of indicies of images to load from imagesArray
-  indices = new Array()
-  max = Math.min(loaded + limit - 1, total - 1)
-  for (var i = loaded; i <= max; i++) {
-    indices.push(i);
-  }
-  return indices;
-}
-*/
-
-/*
-function oldloadPics(imagesArray, indices, listEl, filterList) { //load pictures of indices through a loop
-  for (var i = indices[0]; i <= indices[indices.length - 1]; i++) {
-    const imgEl = document.createElement('img');
-    imgEl.classList.add('imageContainer');
-    imgEl.setAttribute("src", imagesArray[i].imagePath);
-    imgEl.classList.add(...imagesArray[i].classes);
-    if (filterList.size == 0 || intersection(imgEl.classList, filterList)) {
-      imgEl.classList.add("show"); // concern is changing filter while loading
-    }
-    listEl.appendChild(imgEl);
-  }
-  //consider adding return of number loaded
-}
-*/
 
 // load pictures of indices through a loop. Will load until 'limit' visible photos loaded
 // returns index for next photo to be loaded
