@@ -174,9 +174,10 @@ function loadPics(imagesArray, loaded, limit, listEl, filterList) {
 
 // TO DO
 // --- Change scroll to intersection observer
-// --- Change tags from classes to an array
+// --- Fix show all button
+// --- Autogenerate filter buttons
 // --- Add camera setting filters
-// --- Add multiple filters (and/or combination)
+// --- Add multiple filters (with and/or combinations)
 // --- Add sidebar UI for filters
-// --- Add WebP images
+// --- ?Add WebP images
 // --- ?disable filter changes while loading
