@@ -1,22 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
 
   // DATA ----------------------------------------------------------
-  /*
-  imagesArray = [
-    new Image("images/image1.png", ["show", "art"]),
-    new Image("images/image2.jpg", ["show", "people", "surprise"]),
-    new Image("images/image3.jpg", ["show", "people", "surprise"]),
-    new Image("images/image4.jpg", ["show", "people", "surprise"]),
-    new Image("images/image5.jpg", ["show", "outside"]),
-    new Image("images/image6.jpg", ["show", "outside", "people"]),
-    new Image("images/image7.jpg", ["show"]), 
-    new Image("images/image8.jpg", ["show", "art"]), 
-    new Image("images/image9.jpg", ["show", "outside"]),
-    new Image("images/20230729153502_IMG_0124.JPG", ["show", "outside"]),
-    new Image("images/DSC0318.JPG", ["show", "outside"]),
-    new Image("images/DSC0431.JPG", ["show", "outside"])
-  ]
-  */
 
     imagesArray = [
     new Image("images/image1.png", ["art"]),
@@ -25,15 +9,13 @@ window.addEventListener('DOMContentLoaded', () => {
     new Image("images/image4.jpg", ["people", "surprise"]),
     new Image("images/image5.jpg", ["outside"]),
     new Image("images/image6.jpg", ["outside", "people"]),
-    new Image("images/image7.jpg", ["showy"]), 
+    new Image("images/image7.jpg", []), 
     new Image("images/image8.jpg", ["art"]), 
     new Image("images/image9.jpg", ["outside"]),
     new Image("images/20230729153502_IMG_0124.JPG", ["outside"]),
     new Image("images/DSC0318.JPG", ["outside"]),
     new Image("images/DSC0431.JPG", ["outside"])
   ]
-
-  //apply filters here??? Reapply regularly???
 
   buttonArray = [
     new Button("class1", "Class 1"),
@@ -45,9 +27,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // CODE ----------------------------------------------------------
   const listEl = document.querySelector('.listContainer');
-  var btnContainer = document.getElementById("myBtnContainer");
-  
-  const filterList = new Set(); // currently active filters. If empty then show all, otherwise show those which int
+  const btnContainer = document.getElementById("myBtnContainer"); //
+  const filterList = new Set(); // currently active filters. If empty then show all, otherwise show those which have any of these
   
   // Generate buttons
   for (b of buttonArray) {
