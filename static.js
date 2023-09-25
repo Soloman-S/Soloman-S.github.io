@@ -36,11 +36,13 @@ window.addEventListener('DOMContentLoaded', () => {
   for (b of buttonArray) {
     const butEl = document.createElement('button');
     butEl.classList.add('btn');
-    butEl.addEventListener('click', function(b) { // Add active class to the current control button (highlight it)
+    butEl.addEventListener('click', function(b) { 
       filterSelection(b.className);
       var current = document.getElementsByClassName('active');
-      current[0].className = current[0].className.replace(' active', "");
-      this.className += " active"; //?change to native addClass
+      current[0].classList.remove('active');
+      //current[0].className = current[0].className.replace(' active', "");
+      this.classList.add("active");
+      //this.className += " active"; //?change to native addClass // Add active class to the current control button (highlight it)
     }.bind(butEl, b));
     butEl.innerHTML = b.label;
     btnContainer.appendChild(butEl);
