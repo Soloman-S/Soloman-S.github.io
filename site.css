@@ -21,7 +21,7 @@ h1 {
 .image {
   display: block;
   opacity: 1;
-  /*width: 100%;*/
+  width: inherit;
   transition: .5s ease;
   backface-visibility: hidden;
 }
