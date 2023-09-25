@@ -178,10 +178,13 @@ function loadPics(imagesArray, loaded, limit, listEl, filterList) {
     }
     listEl.appendChild(contEl);
     const boxEl = document.createElement('div');
+    const textEl = document.createElement('div');
     boxEl.classList.add('middle');
-    boxEl.innerHTML = "Test inner";
+    textEl.classList.add('text');
+    textEl.innerHTML = "Test inner";
     contEl.appendChild(imgEl);
     contEl.appendChild(boxEl);
+    boxEl.appendChild(textEl);
     i++;
   }
   return i;
