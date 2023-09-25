@@ -37,12 +37,11 @@ window.addEventListener('DOMContentLoaded', () => {
     const butEl = document.createElement('button');
     butEl.classList.add('btn');
     butEl.addEventListener('click', function(b) { 
-      filterSelection(b.className);
+      //filterSelection(b.className);
+      updateFilter(b.className, filterList);
       var current = document.getElementsByClassName('active');
       current[0].classList.remove('active');
-      //current[0].className = current[0].className.replace(' active', "");
-      this.classList.add("active");
-      //this.className += " active"; //?change to native addClass // Add active class to the current control button (highlight it)
+      this.classList.add("active"); // Add active class to the current control button (highlight it)
     }.bind(butEl, b));
     butEl.innerHTML = b.label;
     btnContainer.appendChild(butEl);
@@ -115,7 +114,7 @@ function filterSelection(c) {
   }
 }
 
-/*
+
 // changes filterList and loops through all images to display ones that overlap with list
 // If there are no filters then will show all images
 // ?boolean logic
@@ -133,16 +132,27 @@ if (filterList.size == 0) {
   }
 } else {
   for (image of images) {
-    if (image classes (?new Set(...image.classList) intersects with filterList) { PSEUDOCODE
+    if (intersection(image.classList, filterList)) {
       image.classList.add('show');
     } else {
       image.classList.remove('show');
     }
   }
 }
-*/
 
 
+function intersection(classlist, filterList) {
+  overlap = FALSE;
+  for (el of filterList) {
+    if (classlist.contains(el)) {
+      overlap = TRUE;
+    }
+  }
+  //?new Set(...image.classList) intersects with filterList
+  return overlap;
+}
+
+/*
 //?redundant
 function addClass(element, name) {
   var i, arr1, arr2;
@@ -167,6 +177,7 @@ function removeClass(element, name) {
   }
   element.className = arr1.join(" ");
 }
+*/
 
 // INFINITE SCROLL FUNCTIONS -----------------------------------------------------------------
 function hasMorePics(loaded, total) { // returns TRUE if there are remaining images to display
