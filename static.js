@@ -39,9 +39,9 @@ window.addEventListener('DOMContentLoaded', () => {
     butEl.addEventListener('click', function(b) { 
       //filterSelection(b.className);
       updateFilter(b.className, filterList);
-      var current = document.getElementsByClassName('active');
-      current[0].classList.remove('active');
-      this.classList.add("active"); // Add active class to the current control button (highlight it)
+      //var current = document.getElementsByClassName('active');
+      //current[0].classList.remove('active');
+      this.classList.toggle("active"); // Add active class to the current control button (highlight it)
     }.bind(butEl, b));
     butEl.innerHTML = b.label;
     btnContainer.appendChild(butEl);
@@ -199,8 +199,10 @@ function loadPics(imagesArray, indices, listEl) { //load pictures of indices thr
     const imgEl = document.createElement('img');
     imgEl.classList.add('imageContainer');
     imgEl.setAttribute("src", imagesArray[i].imagePath);
-    //addClass(imgEl, imagesArray[i].classes);
     imgEl.classList.add(...imagesArray[i].classes);
+    if (filterList.size == 0 || intersection(imgEl.classList, filterList)) {
+      imgEl.classList.add("show");
+    }
     
     // To be implemented: if should be active then add 'show' as well
     // concern is changing filter while loading
