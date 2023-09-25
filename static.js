@@ -170,7 +170,7 @@ function loadPics(imagesArray, loaded, limit, listEl, filterList) {
     imgEl.setAttribute("src", imagesArray[i].imagePath);
     // eventually add WebP images https://web.dev/serve-images-webp/
     imgEl.classList.add(...imagesArray[i].classes);
-    imgEl.setAttribute("data-tags", JSON.stringify(images.Array[i].classes));
+    imgEl.setAttribute("data-tags", JSON.stringify(imagesArray[i].classes));
     if (filterList.size == 0 || intersection(imgEl.classList, filterList)) {
       imgEl.classList.add("show"); // concern is changing filter while loading. ?grey out buttons while loading?
       j++;
