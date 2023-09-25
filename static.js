@@ -182,7 +182,7 @@ function loadPics(imagesArray, loaded, limit, listEl, filterList) {
     const textEl = document.createElement('div');
     boxEl.classList.add('middle');
     textEl.classList.add('text');
-    textEl.innerHTML = "Test inner";
+    textEl.innerHTML = imagesArray[i].classes.toString();
     contEl.appendChild(imgEl);
     contEl.appendChild(boxEl);
     boxEl.appendChild(textEl);
