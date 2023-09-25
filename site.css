@@ -9,9 +9,9 @@ h1 {
 
 .imageContainer {
   display: none;
+  position: relative;
   max-width: 50%;
   border: 4px solid #ddd;
-  /*border-radius: 16px;*/
   margin-bottom: 8px;
   margin-left: auto;
   margin-right: auto;
@@ -23,7 +23,7 @@ h1 {
   opacity: 1;
   width: 100%;
   transition: .5s ease;
-  backface-visibility: hidden;
+  backface-visibility: hidden; /*??needed*/
 }
 
 .middle {
@@ -33,8 +33,8 @@ h1 {
   top: 50%;
   left: 50%;
   background-color: #4CAF50;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%); /*??needed*/
+  -ms-transform: translate(-50%, -50%) /*??needed*/
 }
 
 .imageContainer:hover .image {
