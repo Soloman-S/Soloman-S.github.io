@@ -165,21 +165,23 @@ function loadPics(imagesArray, loaded, limit, listEl, filterList) {
   var i = loaded;
   var j = 0; // number of loaded AND visible photos
   while (j < limit) {
+    const contEl = document.createElement('div');
     const imgEl = document.createElement('img');
-    imgEl.classList.add('imageContainer');
+    contEl.classList.add('imageContainer');
     imgEl.setAttribute("src", imagesArray[i].imagePath);
     // eventually add WebP images https://web.dev/serve-images-webp/
-    imgEl.classList.add(...imagesArray[i].classes);
-    imgEl.setAttribute("data-tags", JSON.stringify(imagesArray[i].classes));
-    if (filterList.size == 0 || intersection(imgEl.classList, filterList)) {
-      imgEl.classList.add("show"); // concern is changing filter while loading. ?grey out buttons while loading?
+    contEl.classList.add(...imagesArray[i].classes);
+    contEl.setAttribute("data-tags", JSON.stringify(imagesArray[i].classes));
+    if (filterList.size == 0 || intersection(contEl.classList, filterList)) {
+      contEl.classList.add("show"); // concern is changing filter while loading. ?grey out buttons while loading?
       j++;
     }
-    listEl.appendChild(imgEl);
-    const textEl = document.createElement('div');
-    textEl.classList.add('middle');
-    textEl.innerHTML = "Test inner";
-    imgEl.appendChild(textEl);
+    listEl.appendChild(contEl);
+    const boxEl = document.createElement('div');
+    boxEl.classList.add('middle');
+    boxEl.innerHTML = "Test inner";
+    contEl.appendChild(imgEl);
+    contEl.appendChild(boxEl);
     i++;
   }
   return i;
