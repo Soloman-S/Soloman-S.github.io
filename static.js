@@ -118,15 +118,13 @@ function updateFilter(newFilter, filterList) {
 }
 
 function intersection(classlist, jsonArray, filterList) {
-
+  overlap = false;
   try {
     var classes = JSON.parse(jsonArray);
   } catch (ex) {
     console.error(ex);
   }
-  console.log(classes);
-  
-  overlap = false;
+
   for (el of filterList) {
     if (classes.includes(el)) {
       overlap = true;
@@ -135,24 +133,6 @@ function intersection(classlist, jsonArray, filterList) {
   return overlap;
 }
 
-/*
-function jsontersection(jsonArray, filterList) {
-  overlap = false;
-
-  try {
-    var classes = JSON.parse(jsonArray);
-  } catch (ex) {
-    console.error(ex);
-  }
-  
-  for (el of filterList) {
-    if (classlist.contains(el)) {
-      overlap = true;
-    }
-  }
-  return overlap;
-}
-*/
 
 // INFINITE SCROLL FUNCTIONS -----------------------------------------------------------------
 function hasMorePics(loaded, total) { // returns TRUE if there are remaining images to display
@@ -171,7 +151,7 @@ function loadPics(imagesArray, loaded, limit, listEl, filterList) {
     contEl.classList.add('imageContainer');
     imgEl.setAttribute("src", imagesArray[i].imagePath);
     // eventually add WebP images https://web.dev/serve-images-webp/
-    contEl.classList.add(...imagesArray[i].classes);
+    //contEl.classList.add(...imagesArray[i].classes);
     contEl.setAttribute("data-tags", JSON.stringify(imagesArray[i].classes));
     if (filterList.size == 0 || intersection(contEl.classList, contEl.dataset.tags, filterList)) {
       contEl.classList.add("show"); // concern is changing filter while loading. ?grey out buttons while loading?
