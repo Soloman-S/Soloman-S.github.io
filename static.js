@@ -126,16 +126,17 @@ function updateFilter(newFilter, filterList) {
   } else {
     filterList.add(newFilter)
   }
-if (filterList.size == 0) {
-  for (image of images) {
-    image.classList.add('show');
-  }
-} else {
-  for (image of images) {
-    if (intersection(image.classList, filterList)) {
+  if (filterList.size == 0) {
+    for (image of images) {
       image.classList.add('show');
-    } else {
-      image.classList.remove('show');
+    }
+  } else {
+    for (image of images) {
+      if (intersection(image.classList, filterList)) {
+        image.classList.add('show');
+      } else {
+        image.classList.remove('show');
+      }
     }
   }
 }
