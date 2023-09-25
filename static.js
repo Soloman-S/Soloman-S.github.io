@@ -18,7 +18,7 @@ window.addEventListener('DOMContentLoaded', () => {
   ]
 
   buttonArray = [
-    new Button("class1", "Class 1"),
+    new Button("emptyClass", "Empty Class"),
     new Button("outside", "Outside"),
     new Button("people", "People"),
     new Button("surprise", "Surprise Photos"),
@@ -26,8 +26,8 @@ window.addEventListener('DOMContentLoaded', () => {
   ]
 
   // CODE ----------------------------------------------------------
-  const listEl = document.querySelector('.listContainer');
-  const btnContainer = document.getElementById("myBtnContainer"); //
+  const listEl = document.querySelector('.listContainer'); // container for image objects
+  const btnContainer = document.getElementById("myBtnContainer"); // container for filter buttons
   const filterList = new Set(); // currently active filters. If empty then show all, otherwise show those which have any of these
   
   // Generate buttons
@@ -35,10 +35,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const butEl = document.createElement('button');
     butEl.classList.add('btn');
     butEl.addEventListener('click', function(b) { 
-      //filterSelection(b.className);
       updateFilter(b.className, filterList);
-      //var current = document.getElementsByClassName('active');
-      //current[0].classList.remove('active');
       this.classList.toggle("active"); // Add active class to the current control button (highlight it)
     }.bind(butEl, b));
     butEl.innerHTML = b.label;
@@ -47,14 +44,12 @@ window.addEventListener('DOMContentLoaded', () => {
   
   // Set up infinite scroll
   const limit = 4; //number of images loaded per scroll
-  let currentPage = 1; //number of pages of images loaded. Does nothing
+  //let currentPage = 1; //number of pages of images loaded. Does nothing
   let total = imagesArray.length; //total number of images to load
   let loaded = 0; //number of images loaded
-  let indices = new Array(); //indices of next batch of images to load
+  //let indices = new Array(); //indices of next batch of images to load
   
-  indices = getPics(loaded, limit, total);
-  //loadPics(imagesArray, indices, listEl, filterList);
-  //loaded += indices.length;
+  //indices = getPics(loaded, limit, total);
   loaded = loadPics(imagesArray, loaded, limit, listEl, filterList);
 
   window.addEventListener('scroll', () => {
@@ -66,17 +61,13 @@ window.addEventListener('DOMContentLoaded', () => {
   
     if (scrollTop + clientHeight >= scrollHeight - 5 &&
         hasMorePics(loaded, total)) {
-        currentPage++;
-        indices = getPics(loaded, limit, total);
-        //loadPics(imagesArray, indices, listEl, filterList);
+        //currentPage++;
+        //indices = getPics(loaded, limit, total);
         loaded = loadPics(imagesArray, loaded, limit, listEl, filterList);
-        //loaded += indices.length;
     }
   }, {
     passive: true
   });
-
-  //filterSelection("all")
 });
 
 
@@ -142,38 +133,12 @@ function intersection(classlist, filterList) {
   return overlap;
 }
 
-/*
-//?redundant
-function addClass(element, name) {
-  var i, arr1, arr2;
-  arr1 = element.className.split(" ");
-  arr2 = name.split(" ");
-  for (i = 0; i < arr2.length; i++) {
-    if (arr1.indexOf(arr2[i]) == -1) {
-      element.className += " " + arr2[i];
-    }
-  }
-}
-
-//?redundant
-function removeClass(element, name) {
-  var i, arr1, arr2;
-  arr1 = element.className.split(" ");
-  arr2 = name.split(" ");
-  for (i = 0; i < arr2.length; i++) {
-    while (arr1.indexOf(arr2[i]) > -1) {
-      arr1.splice(arr1.indexOf(arr2[i]), 1);
-    }
-  }
-  element.className = arr1.join(" ");
-}
-*/
-
 // INFINITE SCROLL FUNCTIONS -----------------------------------------------------------------
 function hasMorePics(loaded, total) { // returns TRUE if there are remaining images to display
   return (loaded < total);
 }
 
+/*
 function getPics(loaded, limit, total) { //returns an array of indicies of images to load from imagesArray
   indices = new Array()
   max = Math.min(loaded + limit - 1, total - 1)
@@ -182,7 +147,9 @@ function getPics(loaded, limit, total) { //returns an array of indicies of image
   }
   return indices;
 }
+*/
 
+/*
 function oldloadPics(imagesArray, indices, listEl, filterList) { //load pictures of indices through a loop
   for (var i = indices[0]; i <= indices[indices.length - 1]; i++) {
     const imgEl = document.createElement('img');
@@ -196,35 +163,24 @@ function oldloadPics(imagesArray, indices, listEl, filterList) { //load pictures
   }
   //consider adding return of number loaded
 }
+*/
 
-function loadPics(imagesArray, loaded, limit, listEl, filterList) { //load pictures of indices through a loop
+// load pictures of indices through a loop. Will load until 'limit' visible photos loaded
+// returns index for next photo to be loaded
+function loadPics(imagesArray, loaded, limit, listEl, filterList) { 
   var i = loaded;
-  var j = 0;
+  var j = 0; // number of loaded AND visible photos
   while (j < limit) {
     const imgEl = document.createElement('img');
     imgEl.classList.add('imageContainer');
     imgEl.setAttribute("src", imagesArray[i].imagePath);
     imgEl.classList.add(...imagesArray[i].classes);
     if (filterList.size == 0 || intersection(imgEl.classList, filterList)) {
-      imgEl.classList.add("show"); // concern is changing filter while loading
+      imgEl.classList.add("show"); // concern is changing filter while loading. ?grey out buttons while loading?
       j++;
     }
     listEl.appendChild(imgEl);
     i++;
   }
   return i;
-
-  /*
-  for (var i = indices[0]; i <= indices[indices.length - 1]; i++) {
-    const imgEl = document.createElement('img');
-    imgEl.classList.add('imageContainer');
-    imgEl.setAttribute("src", imagesArray[i].imagePath);
-    imgEl.classList.add(...imagesArray[i].classes);
-    if (filterList.size == 0 || intersection(imgEl.classList, filterList)) {
-      imgEl.classList.add("show"); // concern is changing filter while loading
-    }
-    listEl.appendChild(imgEl);
-  }
-  */
-  //consider adding return of number loaded
 }
