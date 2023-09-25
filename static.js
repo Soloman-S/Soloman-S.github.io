@@ -44,12 +44,8 @@ window.addEventListener('DOMContentLoaded', () => {
   
   // Set up infinite scroll
   const limit = 4; //number of images loaded per scroll
-  //let currentPage = 1; //number of pages of images loaded. Does nothing
   let total = imagesArray.length; //total number of images to load
   let loaded = 0; //number of images loaded
-  //let indices = new Array(); //indices of next batch of images to load
-  
-  //indices = getPics(loaded, limit, total);
   loaded = loadPics(imagesArray, loaded, limit, listEl, filterList);
 
   window.addEventListener('scroll', () => {
@@ -61,8 +57,6 @@ window.addEventListener('DOMContentLoaded', () => {
   
     if (scrollTop + clientHeight >= scrollHeight - 5 &&
         hasMorePics(loaded, total)) {
-        //currentPage++;
-        //indices = getPics(loaded, limit, total);
         loaded = loadPics(imagesArray, loaded, limit, listEl, filterList);
     }
   }, {
@@ -84,7 +78,7 @@ function Button(className, label) {
 
 // FILTER FUNCTIONS ------------------------------------------------
 
-// deprecated
+// currently only used by 'show all' button
 function filterSelection(c) {
   var images, i;
   images = document.getElementsByClassName("imageContainer");
@@ -174,6 +168,7 @@ function loadPics(imagesArray, loaded, limit, listEl, filterList) {
     const imgEl = document.createElement('img');
     imgEl.classList.add('imageContainer');
     imgEl.setAttribute("src", imagesArray[i].imagePath);
+    // eventually add WebP images https://web.dev/serve-images-webp/
     imgEl.classList.add(...imagesArray[i].classes);
     if (filterList.size == 0 || intersection(imgEl.classList, filterList)) {
       imgEl.classList.add("show"); // concern is changing filter while loading. ?grey out buttons while loading?
@@ -184,3 +179,13 @@ function loadPics(imagesArray, loaded, limit, listEl, filterList) {
   }
   return i;
 }
+
+
+// TO DO
+// --- Change scroll to intersection observer
+// --- Change tags from classes to an array
+// --- Add camera setting filters
+// --- Add multiple filters (and/or combination)
+// --- Add sidebar UI for filters
+// --- Add WebP images
+// --- ?disable filter changes while loading
