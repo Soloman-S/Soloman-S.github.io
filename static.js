@@ -167,6 +167,7 @@ function loadPics(imagesArray, loaded, limit, listEl, filterList) {
   while (j < limit) {
     const contEl = document.createElement('div');
     const imgEl = document.createElement('img');
+    imgEl.classList.add('image');
     contEl.classList.add('imageContainer');
     imgEl.setAttribute("src", imagesArray[i].imagePath);
     // eventually add WebP images https://web.dev/serve-images-webp/
