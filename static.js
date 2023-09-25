@@ -143,10 +143,10 @@ function updateFilter(newFilter, filterList) {
 
 
 function intersection(classlist, filterList) {
-  overlap = FALSE;
+  overlap = false;
   for (el of filterList) {
     if (classlist.contains(el)) {
-      overlap = TRUE;
+      overlap = true;
     }
   }
   //?new Set(...image.classList) intersects with filterList
