@@ -19,6 +19,7 @@ h1 {
 }
 
 .image {
+  display: block;
   opacity: 1;
   width: 100%;
   transition: .5s ease;
