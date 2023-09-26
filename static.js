@@ -4,7 +4,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
     imagesArray = [
     new Image("images/image1.png", ["art"]),
-    new Image("images/image2.jpg", ["people", "surprise photos"]),
+    new Image("images/image2.jpg", ["people", "surprise photos"])
+      ]
+  /*
     new Image("images/image3.jpg", ["people", "surprise photos"]),
     new Image("images/image4.jpg", ["people", "surprise photos"]),
     new Image("images/image5.jpg", ["outside"]),
@@ -15,7 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
     new Image("images/20230729153502_IMG_0124.JPG", ["outside"]),
     new Image("images/DSC0318.JPG", ["outside"]),
     new Image("images/DSC0431.JPG", ["outside"])
-  ]
+  ]*/
 
   var buttons = {};
   for (image of imagesArray) {
