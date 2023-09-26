@@ -52,10 +52,17 @@ window.addEventListener('DOMContentLoaded', () => {
   loaded = loadPics(imagesArray, loaded, limit, listEl, filterList);
 
 
-  //
-  var observer = new IntersectionObserver(function () {console.log("Overlap")});
-  observer.target(document.getElementById("targetElem"));
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) {
+        return;
+      }
+      console.log("Overlap");
+    });
+  });
+  io.observe(document.getElementById("targetElem"));
   
+  //
   window.addEventListener('scroll', () => {
     const {
         scrollTop,
@@ -70,7 +77,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }, {
     passive: true
   });
-  
+  //
 
 
   
