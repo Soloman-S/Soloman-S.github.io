@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', () => {
   for (image of imagesArray) {
     for (tag of image.classes) {
       console.log(tag);
-      if (tag of Object.keys(buttons)) {
+      if (tag in Object.keys(buttons)) {
         buttons[tag]++;
       } else {
         buttons[tag] = 1;
