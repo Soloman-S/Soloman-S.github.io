@@ -57,12 +57,14 @@ window.addEventListener('DOMContentLoaded', () => {
       if (!entry.isIntersecting) {
         return;
       }
-      console.log("Overlap");
+      if (hasMorePics(loaded, total)) {
+        loaded = loadPics(imagesArray, loaded, limit, listEl, filterList);
+    }
     });
   });
   io.observe(document.getElementById("targetElem"));
   
-  //
+  /*
   window.addEventListener('scroll', () => {
     const {
         scrollTop,
@@ -77,7 +79,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }, {
     passive: true
   });
-  //
+  */
 
 
   
@@ -161,7 +163,7 @@ function hasMorePics(loaded, total) { // returns true if there are remaining ima
 
 function loadPics(imagesArray, loaded, limit, listEl, filterList) { // loads images until 'limit' visible photos loaded. Returns index for next to be loaded
   var i = loaded;
-  var j = 0; // number of loaded AND visible photos
+  var j = 0; // number of loaded AND visible photos this round
   while (j < limit) {
     const contEl = generatePic(imagesArray[i]); // parent container holding image and floating textbox
     if (filterList.size == 0 || intersection(contEl.dataset.tags, filterList)) {
