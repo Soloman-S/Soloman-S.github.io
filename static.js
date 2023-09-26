@@ -49,16 +49,17 @@ window.addEventListener('DOMContentLoaded', () => {
   const limit = 4; //number of images loaded per scroll
   let total = imagesArray.length; //total number of images to load
   let loaded = 0; //number of images loaded
-  //loaded = loadPics(imagesArray, loaded, limit, listEl, filterList);
-
   const io = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (!entry.isIntersecting) { // do nothing if not intersecting
-        return;
-      }
-      if (hasMorePics(loaded, total)) { // load next batch of images
+      console.log(entry);
+      if (entry.isIntersecting) { // do nothing if not intersecting
+        console.log("Intersect");
         loaded = loadPics(imagesArray, loaded, limit, listEl, filterList);
-    }
+        //return;
+      }
+      //if (hasMorePics(loaded, total)) { // load next batch of images
+      //  loaded = loadPics(imagesArray, loaded, limit, listEl, filterList);
+      //}
     });
   });
   io.observe(document.getElementById("targetElem"));  
