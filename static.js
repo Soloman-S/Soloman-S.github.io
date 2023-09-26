@@ -32,7 +32,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const listEl = document.querySelector('.listContainer'); // container for image objects
   const btnContainer = document.getElementById("myBtnContainer"); // container for filter buttons
   const filterList = new Set(); // currently active filters. If empty then show all, otherwise show those which have any of these
-  filterList.add('art');
   
   // Generate buttons
     for (b of Object.keys(buttons)) {
@@ -52,15 +51,12 @@ window.addEventListener('DOMContentLoaded', () => {
   let loaded = 0; //number of images loaded
   const io = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      console.log(entry);
       if (entry.isIntersecting) { // do nothing if not intersecting
-        console.log("Intersect");
         loaded = loadPics(imagesArray, loaded, limit, listEl, filterList);
         //return;
+      } else {
+        return;
       }
-      //if (hasMorePics(loaded, total)) { // load next batch of images
-      //  loaded = loadPics(imagesArray, loaded, limit, listEl, filterList);
-      //}
     });
   });
   io.observe(document.getElementById("targetElem"));  
@@ -72,13 +68,6 @@ function Image(imagePath, classes) {
   this.imagePath = imagePath;
   this.classes = classes;
 }
-
-/*
-function Button(className, label) {
-  this.className = className;
-  this.label = label;
-}
-*/
 
 // FILTER FUNCTIONS ------------------------------------------------
 
@@ -93,7 +82,6 @@ function filterSelection(c) {
     if (images[i].className.indexOf(c) > -1) images[i].classList.add('show');
   }
 }
-
 
 // changes filterList and loops through all images to display ones that overlap with list
 // If there are no filters then will show all images
@@ -128,12 +116,12 @@ function updateFilter(newFilter, filterList) {
 
 function intersection(jsonTags, filterList) { // check for overlaps between JSON array of tags and filter set. Returns boolean
   overlap = false;
-  try {
+  try { // convert JSON of tags to array
     var classes = JSON.parse(jsonTags);
   } catch (ex) {
     console.error(ex);
   }
-  for (el of filterList) {
+  for (el of filterList) { //compare filter set elements to tag array
     if (classes.includes(el)) {
       overlap = true;
     }
@@ -143,15 +131,15 @@ function intersection(jsonTags, filterList) { // check for overlaps between JSON
 
 
 // INFINITE SCROLL FUNCTIONS -----------------------------------------------------------------
+/*
 function hasMorePics(loaded, total) { // returns true if there are remaining images to display
   return (loaded < total);
-}
+}*/
 
 function loadPics(imagesArray, loaded, limit, listEl, filterList) { // loads images until 'limit' visible photos loaded. Returns index for next to be loaded
   var i = loaded;
-  var j = 0; // number of loaded AND visible photos this round
+  var j = 0; // number of loaded VISIBLE photos this round
   while (j < limit && i < imagesArray.length) {
-    console.log("Generating pic " + i);
     const contEl = generatePic(imagesArray[i]); // parent container holding image and floating textbox
     const imgEl = contEl.querySelector('.image')
     if (filterList.size == 0 || intersection(contEl.dataset.tags, filterList)) {
@@ -160,10 +148,8 @@ function loadPics(imagesArray, loaded, limit, listEl, filterList) { // loads ima
       contEl.classList.add("show"); // concern is changing filter while loading. ?grey out buttons while loading?
       j++;
     }
-    console.log("loaded visible: " + j);
     listEl.appendChild(contEl);
     i++;
-    console.log("i is " + i + " and limit is" + limit);
   }
   return i;
 }
@@ -197,7 +183,8 @@ function generatePic(image) { // creates and returns parent container holding im
 // --- Add camera setting filters
 // --- Add multiple filters (with and/or combinations)
 // --- Add sidebar UI for filters
-// --- ?Add WebP images
+// --- ?Add WebP images with picture tag
 // --- ?Disable filter changes while loading
 // --- ?Change hover to include active/focus for mobile (vs ?click to expand)
-// --- ?Only load picture once visible
+// --- Add loading animation
+// --- Fix hoverbox css to scale/fit
