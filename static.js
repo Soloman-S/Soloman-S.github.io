@@ -17,12 +17,11 @@ window.addEventListener('DOMContentLoaded', () => {
     new Image("images/DSC0431.JPG", ["outside"])
   ]
 
-  //buttonSet = new Set();
   var buttons = {};
   for (image of imagesArray) {
     for (tag of image.classes) {
       console.log(tag);
-      if (tag in buttons) {
+      if (tag of Object.keys(buttons)) {
         buttons[tag]++;
       } else {
         buttons[tag] = 1;
@@ -30,7 +29,8 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
   console.log(buttons);
-  
+
+  /*
   buttonArray = [
     new Button("emptyClass", "Empty Class"),
     new Button("outside", "Outside"),
@@ -38,6 +38,7 @@ window.addEventListener('DOMContentLoaded', () => {
     new Button("surprise photos", "Surprise Photos"),
     new Button("art", "Art")
   ]
+  */
 
   // CODE ----------------------------------------------------------
   const listEl = document.querySelector('.listContainer'); // container for image objects
@@ -58,7 +59,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
   */
 
-    for (b in buttons) {
+    for (b of Object.keys(buttons)) {
     const butEl = document.createElement('button');
     butEl.classList.add('btn');
     butEl.addEventListener('click', function(b) { 
@@ -135,7 +136,7 @@ function updateFilter(newFilter, filterList) {
     }
   } else {
     for (image of images) {
-      if (intersection(image.classList, image.dataset.tags, filterList)) {
+      if (intersection(image.dataset.tags, filterList)) {
         image.classList.add('show');
       } else {
         image.classList.remove('show');
@@ -144,10 +145,10 @@ function updateFilter(newFilter, filterList) {
   }
 }
 
-function intersection(classlist, jsonArray, filterList) {
+function intersection(jsonTags, filterList) {
   overlap = false;
   try {
-    var classes = JSON.parse(jsonArray);
+    var classes = JSON.parse(jsonTags);
   } catch (ex) {
     console.error(ex);
   }
@@ -172,39 +173,64 @@ function loadPics(imagesArray, loaded, limit, listEl, filterList) {
   var i = loaded;
   var j = 0; // number of loaded AND visible photos
   while (j < limit) {
-    const contEl = document.createElement('div');
-    const imgEl = document.createElement('img');
-    imgEl.classList.add('image');
+    /*
+    const contEl = document.createElement('div'); // parent container
+    const imgEl = document.createElement('img'); // holds image
+    const boxEl = document.createElement('div'); // holds hover box
+    const textEl = document.createElement('div'); // holds text in hoverbox ?redundant
+    
     contEl.classList.add('imageContainer');
-    imgEl.setAttribute("src", imagesArray[i].imagePath);
-    // eventually add WebP images https://web.dev/serve-images-webp/
-    //contEl.classList.add(...imagesArray[i].classes);
+    imgEl.classList.add('image');
+    boxEl.classList.add('middle');
+    textEl.classList.add('text');
+
     contEl.setAttribute("data-tags", JSON.stringify(imagesArray[i].classes));
-    if (filterList.size == 0 || intersection(contEl.classList, contEl.dataset.tags, filterList)) {
+    imgEl.setAttribute("src", imagesArray[i].imagePath); // eventually add WebP images https://web.dev/serve-images-webp/
+    textEl.innerHTML = imagesArray[i].classes.toString();
+
+    contEl.appendChild(imgEl);
+    contEl.appendChild(boxEl);
+    boxEl.appendChild(textEl);
+    */
+    const contEl = generatePic(imagesArray[i]); // parent container holding image and floating textbox
+    if (filterList.size == 0 || intersection(contEl.dataset.tags, filterList)) {
       contEl.classList.add("show"); // concern is changing filter while loading. ?grey out buttons while loading?
       j++;
     }
     listEl.appendChild(contEl);
-    const boxEl = document.createElement('div');
-    const textEl = document.createElement('div');
-    boxEl.classList.add('middle');
-    textEl.classList.add('text');
-    textEl.innerHTML = imagesArray[i].classes.toString();
-    contEl.appendChild(imgEl);
-    contEl.appendChild(boxEl);
-    boxEl.appendChild(textEl);
     i++;
   }
   return i;
+}
+
+generatePic(image) { // creates and returns parent container holding image and floating textbox
+  const contEl = document.createElement('div'); // parent container
+  const imgEl = document.createElement('img'); // holds image
+  const boxEl = document.createElement('div'); // holds hover box
+  const textEl = document.createElement('div'); // holds text in hoverbox ?redundant
+  
+  contEl.classList.add('imageContainer');
+  imgEl.classList.add('image');
+  boxEl.classList.add('middle');
+  textEl.classList.add('text');
+
+  contEl.setAttribute("data-tags", JSON.stringify(image.classes));
+  imgEl.setAttribute("src", image.imagePath); // eventually add WebP images https://web.dev/serve-images-webp/
+  textEl.innerHTML = image.classes.toString();
+
+  contEl.appendChild(imgEl);
+  contEl.appendChild(boxEl);
+  boxEl.appendChild(textEl);
+  return contEl;
 }
 
 
 // TO DO
 // --- Change scroll to intersection observer
 // --- Fix show all button
-// --- Autogenerate filter buttons
 // --- Add camera setting filters
 // --- Add multiple filters (with and/or combinations)
 // --- Add sidebar UI for filters
 // --- ?Add WebP images
 // --- ?disable filter changes while loading
+// --- Change hover to include active (vs ?click to expand)
