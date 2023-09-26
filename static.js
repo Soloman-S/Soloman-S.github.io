@@ -53,7 +53,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
   //
-  var observer = new IntersectionObserver(console.log("Overlap"));
+  var observer = new IntersectionObserver(function () {console.log("Overlap")});
   observer.target(document.getElementById("targetElem"));
   
   window.addEventListener('scroll', () => {
