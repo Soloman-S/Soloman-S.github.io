@@ -32,6 +32,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const listEl = document.querySelector('.listContainer'); // container for image objects
   const btnContainer = document.getElementById("myBtnContainer"); // container for filter buttons
   const filterList = new Set(); // currently active filters. If empty then show all, otherwise show those which have any of these
+  filterList.add('art');
   
   // Generate buttons
     for (b of Object.keys(buttons)) {
