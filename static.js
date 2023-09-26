@@ -1,7 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
 
   // DATA ----------------------------------------------------------
-
     imagesArray = [
     new Image("images/image1.png", ["art"]),
     new Image("images/image2.jpg", ["people", "surprise photos"]),
