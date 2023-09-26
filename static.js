@@ -17,6 +17,20 @@ window.addEventListener('DOMContentLoaded', () => {
     new Image("images/DSC0431.JPG", ["outside"])
   ]
 
+  //buttonSet = new Set();
+  var buttons = {};
+  for (image of imagesArray) {
+    for (tag of image[1]) {
+      console.log(tag);
+      if (tag in buttons) {
+        buttons[tag]++;
+      } else {
+        buttons[tag] = 1;
+      }
+    }
+  }
+  console.log(buttons);
+  
   buttonArray = [
     new Button("emptyClass", "Empty Class"),
     new Button("outside", "Outside"),
