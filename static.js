@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', () => {
   //buttonSet = new Set();
   var buttons = {};
   for (image of imagesArray) {
-    for (tag of image[1]) {
+    for (tag of image.classes) {
       console.log(tag);
       if (tag in buttons) {
         buttons[tag]++;
