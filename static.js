@@ -45,6 +45,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const filterList = new Set(); // currently active filters. If empty then show all, otherwise show those which have any of these
   
   // Generate buttons
+  /*
   for (b of buttonArray) {
     const butEl = document.createElement('button');
     butEl.classList.add('btn');
@@ -53,6 +54,18 @@ window.addEventListener('DOMContentLoaded', () => {
       this.classList.toggle("active"); // Add active class to the current control button (highlight it)
     }.bind(butEl, b));
     butEl.innerHTML = b.label;
+    btnContainer.appendChild(butEl);
+  }
+  */
+
+    for (b of buttons) {
+    const butEl = document.createElement('button');
+    butEl.classList.add('btn');
+    butEl.addEventListener('click', function(b) { 
+      updateFilter(b, filterList);
+      this.classList.toggle("active"); // Add active class to the current control button (highlight it)
+    }.bind(butEl, b));
+    butEl.innerHTML = buttons[b];
     btnContainer.appendChild(butEl);
   }
   
