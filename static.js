@@ -66,7 +66,7 @@ window.addEventListener('DOMContentLoaded', () => {
       updateFilter(b, filterList);
       this.classList.toggle("active"); // Add active class to the current control button (highlight it)
     }.bind(butEl, b));
-    butEl.innerHTML = buttons[b];
+    butEl.innerHTML = b + " [" + buttons[b] + "]";
     btnContainer.appendChild(butEl);
   }
   
