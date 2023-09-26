@@ -159,8 +159,10 @@ function loadPics(imagesArray, loaded, limit, listEl, filterList) { // loads ima
       contEl.classList.add("show"); // concern is changing filter while loading. ?grey out buttons while loading?
       j++;
     }
+    console.log("loaded visible: " + j);
     listEl.appendChild(contEl);
     i++;
+    console.log("i is " + i + " and limit is" + limit);
   }
   return i;
 }
