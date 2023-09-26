@@ -37,15 +37,15 @@ h1 {
   -ms-transform: translate(-50%, -50%) /*??needed*/
 }
 
-.imageContainer:hover .image {
+.image:hover {
   opacity: 0.3;
 }
 
-.imageContainer:active .image {
+.image:active {
   opacity: 0.3;
 }
 
-.imageContainer:focus .image {
+.image:focus {
   opacity: 0.3;
 }
 
