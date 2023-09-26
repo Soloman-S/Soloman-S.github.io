@@ -203,7 +203,7 @@ function loadPics(imagesArray, loaded, limit, listEl, filterList) {
   return i;
 }
 
-generatePic(image) { // creates and returns parent container holding image and floating textbox
+function generatePic(image) { // creates and returns parent container holding image and floating textbox
   const contEl = document.createElement('div'); // parent container
   const imgEl = document.createElement('img'); // holds image
   const boxEl = document.createElement('div'); // holds hover box
