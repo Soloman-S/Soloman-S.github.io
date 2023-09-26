@@ -151,6 +151,7 @@ function loadPics(imagesArray, loaded, limit, listEl, filterList) { // loads ima
   var i = loaded;
   var j = 0; // number of loaded AND visible photos this round
   while (j < limit) {
+    console.log("Generating pic " + i);
     const contEl = generatePic(imagesArray[i]); // parent container holding image and floating textbox
     const imgEl = contEl.querySelector('.image')
     if (filterList.size == 0 || intersection(contEl.dataset.tags, filterList)) {
