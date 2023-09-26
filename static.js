@@ -58,7 +58,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
   */
 
-    for (b of buttons) {
+    for (b in buttons) {
     const butEl = document.createElement('button');
     butEl.classList.add('btn');
     butEl.addEventListener('click', function(b) { 
