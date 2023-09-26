@@ -111,11 +111,11 @@ function updateFilter(newFilter, filterList) {
   } else { // for each image, if it contains ANY filtered tags, then show
     for (cont of conts) {
       if (intersection(cont.dataset.tags, filterList)) {
-        const imgEl = cont.querySelector('.img')
-        if (imgEl.dataset.loaded == false) {
-          imgEl.setAttribute("src", imgEl.dataset.src);
-          imgEl.setAttribute("data-loaded", true);
-        }
+        //const imgEl = cont.querySelector('.img')
+        //if (imgEl.dataset.loaded == false) {
+        //  imgEl.setAttribute("src", imgEl.dataset.src);
+        //  imgEl.setAttribute("data-loaded", true);
+        //}
         cont.classList.add('show');
       } else {
         cont.classList.remove('show');
@@ -150,10 +150,10 @@ function loadPics(imagesArray, loaded, limit, listEl, filterList) { // loads ima
   var j = 0; // number of loaded AND visible photos this round
   while (j < limit) {
     const contEl = generatePic(imagesArray[i]); // parent container holding image and floating textbox
-    const imgEl = contEl.querySelector('.img')
+    //const imgEl = contEl.querySelector('.img')
     if (filterList.size == 0 || intersection(contEl.dataset.tags, filterList)) {
-      imgEl.setAttribute("src", imgEl.dataset.src);
-      imgEl.setAttribute("data-loaded", true);
+      //imgEl.setAttribute("src", imgEl.dataset.src);
+      //imgEl.setAttribute("data-loaded", true);
       contEl.classList.add("show"); // concern is changing filter while loading. ?grey out buttons while loading?
       j++;
     }
