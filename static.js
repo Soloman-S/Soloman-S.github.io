@@ -2,7 +2,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // DATA ----------------------------------------------------------
     imagesArray = [
-    new Image("images/image1.png", ["art"], [4.0, 1/500, 3200]),
+    new Image("images/image1.png", ["art"], ["50mm", 4.0, 1/500, 3200]),
     new Image("images/image2.jpg", ["people", "surprise photos"]),
     new Image("images/image3.jpg", ["people", "surprise photos"]),
     new Image("images/image4.jpg", ["people", "surprise photos"]),
@@ -181,6 +181,7 @@ function generatePic(image) { // creates and returns parent container holding im
 // TO DO
 // --- Fix show all button
 // --- Add camera setting filters
+// --- Add other camera details (model, lens, ?focal length)
 // --- Add multiple filters (with and/or combinations)
 // --- Add sidebar UI for filters
 // --- ?Add WebP images with picture tag
@@ -188,3 +189,4 @@ function generatePic(image) { // creates and returns parent container holding im
 // --- ?Change hover to include active/focus for mobile (vs ?click to expand)
 // --- Add loading animation
 // --- Fix hoverbox css to scale/fit
+// --- Autopopulate imagesArray when image uploaded
