@@ -49,40 +49,19 @@ window.addEventListener('DOMContentLoaded', () => {
   const limit = 4; //number of images loaded per scroll
   let total = imagesArray.length; //total number of images to load
   let loaded = 0; //number of images loaded
-  loaded = loadPics(imagesArray, loaded, limit, listEl, filterList);
-
+  //loaded = loadPics(imagesArray, loaded, limit, listEl, filterList);
 
   const io = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (!entry.isIntersecting) {
+      if (!entry.isIntersecting) { // do nothing if not intersecting
         return;
       }
-      if (hasMorePics(loaded, total)) {
+      if (hasMorePics(loaded, total)) { // load next batch of images
         loaded = loadPics(imagesArray, loaded, limit, listEl, filterList);
     }
     });
   });
-  io.observe(document.getElementById("targetElem"));
-  
-  /*
-  window.addEventListener('scroll', () => {
-    const {
-        scrollTop,
-        scrollHeight,
-        clientHeight
-    } = document.documentElement;
-  
-    if (scrollTop + clientHeight >= scrollHeight - 5 &&
-        hasMorePics(loaded, total)) {
-        loaded = loadPics(imagesArray, loaded, limit, listEl, filterList);
-    }
-  }, {
-    passive: true
-  });
-  */
-
-
-  
+  io.observe(document.getElementById("targetElem"));  
 });
 
 
@@ -119,22 +98,27 @@ function filterSelection(c) {
 // ?boolean logic
 // eventually add second filtering for settings from sliding bars
 function updateFilter(newFilter, filterList) {
-  images = document.getElementsByClassName("imageContainer");
+  conts = document.getElementsByClassName("imageContainer");
   if (filterList.has(newFilter)) { // toggle selected filter
     filterList.delete(newFilter)
   } else {
     filterList.add(newFilter)
   }
   if (filterList.size == 0) { // if no filters selected then show all
-    for (image of images) {
-      image.classList.add('show');
+    for (cont of conts) {
+      cont.classList.add('show');
     }
   } else { // for each image, if it contains ANY filtered tags, then show
-    for (image of images) {
-      if (intersection(image.dataset.tags, filterList)) {
-        image.classList.add('show');
+    for (cont of conts) {
+      if (intersection(cont.dataset.tags, filterList)) {
+        const imgEl = cont.querySelector('.img')
+        if (imgEl.dataset.loaded == false) {
+          imgEl.setAttribute("src", imgEl.dataset.src);
+          imgEl.setAttribute("data-loaded", true);
+        }
+        cont.classList.add('show');
       } else {
-        image.classList.remove('show');
+        cont.classList.remove('show');
       }
     }
   }
@@ -166,7 +150,10 @@ function loadPics(imagesArray, loaded, limit, listEl, filterList) { // loads ima
   var j = 0; // number of loaded AND visible photos this round
   while (j < limit) {
     const contEl = generatePic(imagesArray[i]); // parent container holding image and floating textbox
+    const imgEl = contEl.querySelector('.img')
     if (filterList.size == 0 || intersection(contEl.dataset.tags, filterList)) {
+      imgEl.setAttribute("src", imgEl.dataset.src);
+      imgEl.setAttribute("data-loaded", true);
       contEl.classList.add("show"); // concern is changing filter while loading. ?grey out buttons while loading?
       j++;
     }
@@ -188,7 +175,9 @@ function generatePic(image) { // creates and returns parent container holding im
   textEl.classList.add('text');
 
   contEl.setAttribute("data-tags", JSON.stringify(image.classes));
-  imgEl.setAttribute("src", image.imagePath); // eventually add WebP images https://web.dev/serve-images-webp/
+  imgEl.setAttribute("src", "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
+  imgEl.setAttribute("data-src", image.imagePath); // eventually add WebP images https://web.dev/serve-images-webp/
+  imgEl.setAttribute("data-loaded", false);
   textEl.innerHTML = image.classes.toString();
 
   contEl.appendChild(imgEl);
@@ -199,7 +188,6 @@ function generatePic(image) { // creates and returns parent container holding im
 
 
 // TO DO
-// --- Change scroll to intersection observer
 // --- Fix show all button
 // --- Add camera setting filters
 // --- Add multiple filters (with and/or combinations)
@@ -207,3 +195,4 @@ function generatePic(image) { // creates and returns parent container holding im
 // --- ?Add WebP images
 // --- ?Disable filter changes while loading
 // --- ?Change hover to include active/focus for mobile (vs ?click to expand)
+// --- ?Only load picture once visible
