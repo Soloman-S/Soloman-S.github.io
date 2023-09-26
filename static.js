@@ -2,7 +2,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // DATA ----------------------------------------------------------
     imagesArray = [
-    new Image("images/image1.png", ["art"]),
+    new Image("images/image1.png", ["art"], [4.0, 1/500, 3200]),
     new Image("images/image2.jpg", ["people", "surprise photos"]),
     new Image("images/image3.jpg", ["people", "surprise photos"]),
     new Image("images/image4.jpg", ["people", "surprise photos"]),
@@ -63,9 +63,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 // SET UP FUNCTIONS - dynamic page generation ----------------------
-function Image(imagePath, classes) {
+function Image(imagePath, classes, camSettings) {
   this.imagePath = imagePath;
   this.classes = classes;
+  this.camSettings = camSettings;
 }
 
 // FILTER FUNCTIONS ------------------------------------------------
