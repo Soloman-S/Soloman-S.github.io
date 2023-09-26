@@ -20,7 +20,6 @@ window.addEventListener('DOMContentLoaded', () => {
   var buttons = {};
   for (image of imagesArray) {
     for (tag of image.classes) {
-      console.log(tag);
       if (Object.keys(buttons).includes(tag)) {
         buttons[tag]++;
       } else {
@@ -28,17 +27,6 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     }
   }
-  console.log(buttons);
-
-  /*
-  buttonArray = [
-    new Button("emptyClass", "Empty Class"),
-    new Button("outside", "Outside"),
-    new Button("people", "People"),
-    new Button("surprise photos", "Surprise Photos"),
-    new Button("art", "Art")
-  ]
-  */
 
   // CODE ----------------------------------------------------------
   const listEl = document.querySelector('.listContainer'); // container for image objects
@@ -46,19 +34,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const filterList = new Set(); // currently active filters. If empty then show all, otherwise show those which have any of these
   
   // Generate buttons
-  /*
-  for (b of buttonArray) {
-    const butEl = document.createElement('button');
-    butEl.classList.add('btn');
-    butEl.addEventListener('click', function(b) { 
-      updateFilter(b.className, filterList);
-      this.classList.toggle("active"); // Add active class to the current control button (highlight it)
-    }.bind(butEl, b));
-    butEl.innerHTML = b.label;
-    btnContainer.appendChild(butEl);
-  }
-  */
-
     for (b of Object.keys(buttons)) {
     const butEl = document.createElement('button');
     butEl.classList.add('btn');
@@ -76,6 +51,11 @@ window.addEventListener('DOMContentLoaded', () => {
   let loaded = 0; //number of images loaded
   loaded = loadPics(imagesArray, loaded, limit, listEl, filterList);
 
+
+  //
+  var observer = new IntersectionObserver(console.log("Overlap"));
+  observer.target(document.getElementById("targetElem"));
+  
   window.addEventListener('scroll', () => {
     const {
         scrollTop,
@@ -90,6 +70,10 @@ window.addEventListener('DOMContentLoaded', () => {
   }, {
     passive: true
   });
+  
+
+
+  
 });
 
 
@@ -99,10 +83,12 @@ function Image(imagePath, classes) {
   this.classes = classes;
 }
 
+/*
 function Button(className, label) {
   this.className = className;
   this.label = label;
 }
+*/
 
 // FILTER FUNCTIONS ------------------------------------------------
 
@@ -125,16 +111,16 @@ function filterSelection(c) {
 // eventually add second filtering for settings from sliding bars
 function updateFilter(newFilter, filterList) {
   images = document.getElementsByClassName("imageContainer");
-  if (filterList.has(newFilter)) {
+  if (filterList.has(newFilter)) { // toggle selected filter
     filterList.delete(newFilter)
   } else {
     filterList.add(newFilter)
   }
-  if (filterList.size == 0) {
+  if (filterList.size == 0) { // if no filters selected then show all
     for (image of images) {
       image.classList.add('show');
     }
-  } else {
+  } else { // for each image, if it contains ANY filtered tags, then show
     for (image of images) {
       if (intersection(image.dataset.tags, filterList)) {
         image.classList.add('show');
@@ -145,14 +131,13 @@ function updateFilter(newFilter, filterList) {
   }
 }
 
-function intersection(jsonTags, filterList) {
+function intersection(jsonTags, filterList) { // check for overlaps between JSON array of tags and filter set. Returns boolean
   overlap = false;
   try {
     var classes = JSON.parse(jsonTags);
   } catch (ex) {
     console.error(ex);
   }
-
   for (el of filterList) {
     if (classes.includes(el)) {
       overlap = true;
@@ -163,35 +148,14 @@ function intersection(jsonTags, filterList) {
 
 
 // INFINITE SCROLL FUNCTIONS -----------------------------------------------------------------
-function hasMorePics(loaded, total) { // returns TRUE if there are remaining images to display
+function hasMorePics(loaded, total) { // returns true if there are remaining images to display
   return (loaded < total);
 }
 
-// load pictures of indices through a loop. Will load until 'limit' visible photos loaded
-// returns index for next photo to be loaded
-function loadPics(imagesArray, loaded, limit, listEl, filterList) { 
+function loadPics(imagesArray, loaded, limit, listEl, filterList) { // loads images until 'limit' visible photos loaded. Returns index for next to be loaded
   var i = loaded;
   var j = 0; // number of loaded AND visible photos
   while (j < limit) {
-    /*
-    const contEl = document.createElement('div'); // parent container
-    const imgEl = document.createElement('img'); // holds image
-    const boxEl = document.createElement('div'); // holds hover box
-    const textEl = document.createElement('div'); // holds text in hoverbox ?redundant
-    
-    contEl.classList.add('imageContainer');
-    imgEl.classList.add('image');
-    boxEl.classList.add('middle');
-    textEl.classList.add('text');
-
-    contEl.setAttribute("data-tags", JSON.stringify(imagesArray[i].classes));
-    imgEl.setAttribute("src", imagesArray[i].imagePath); // eventually add WebP images https://web.dev/serve-images-webp/
-    textEl.innerHTML = imagesArray[i].classes.toString();
-
-    contEl.appendChild(imgEl);
-    contEl.appendChild(boxEl);
-    boxEl.appendChild(textEl);
-    */
     const contEl = generatePic(imagesArray[i]); // parent container holding image and floating textbox
     if (filterList.size == 0 || intersection(contEl.dataset.tags, filterList)) {
       contEl.classList.add("show"); // concern is changing filter while loading. ?grey out buttons while loading?
@@ -232,5 +196,5 @@ function generatePic(image) { // creates and returns parent container holding im
 // --- Add multiple filters (with and/or combinations)
 // --- Add sidebar UI for filters
 // --- ?Add WebP images
-// --- ?disable filter changes while loading
-// --- Change hover to include active (vs ?click to expand)
+// --- ?Disable filter changes while loading
+// --- ?Change hover to include active/focus for mobile (vs ?click to expand)
