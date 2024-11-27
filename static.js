@@ -2,18 +2,19 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // DATA ----------------------------------------------------------
     imagesArray = [
-    new Image("images/image1.png", ["art"], ["50mm", 4.0, 1/500, 3200]),
-    new Image("images/image2.jpg", ["people", "surprise photos"]),
-    new Image("images/image3.jpg", ["people", "surprise photos"]),
-    new Image("images/image4.jpg", ["people", "surprise photos"]),
-    new Image("images/image5.jpg", ["outside"]),
-    new Image("images/image6.jpg", ["outside", "people"]),
-    new Image("images/image7.jpg", []), 
-    new Image("images/image8.jpg", ["art"]), 
-    new Image("images/image9.jpg", ["outside"]),
-    new Image("images/20230729153502_IMG_0124.JPG", ["outside"]),
-    new Image("images/DSC0318.JPG", ["outside"]),
-    new Image("images/DSC0431.JPG", ["outside"])
+    new Image("images/img1.jpg", ["Wildlife", "Outdoors"], ["50mm", 4.0, 1/500, 3200]),
+    new Image("images/img2.jpg", ["Outdoors"]),
+    new Image("images/img3.jpg", ["Wildlife", "Outdoors"]),
+    new Image("images/img4.jpg", ["Outdoors"]),
+    new Image("images/img5.jpg", ["People", "Outdoors]),
+    new Image("images/img6.jpg", ["Wildlife", "Outdoors"),
+    new Image("images/img7.jpg", ["Wildlife", "Outdoors"]), 
+    new Image("images/img8.jpg", ["Outdoors"]), 
+    new Image("images/img9.jpg", ["Outdoors"]),
+    new Image("images/img10.jpg", ["Outdoors"]), 
+    new Image("images/img11.jpg", ["Wildlife", "Outdoors"]),
+    new Image("images/img12.jpg", ["Outdoors"])
+
   ]
 
   var buttons = {};
