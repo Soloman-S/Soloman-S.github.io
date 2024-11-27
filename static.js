@@ -2,7 +2,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // DATA ----------------------------------------------------------
     imagesArray = [
-    new Image("images/img1.jpg", ["Wildlife", "Outdoors"], ["50mm", 4.0, 1/500, 3200]),
+    new Image("images/img1.JPG", ["Wildlife", "Outdoors"], ["50mm", 4.0, 1/500, 3200]),
     new Image("images/img2.jpg", ["Outdoors"]),
     new Image("images/img3.jpg", ["Wildlife", "Outdoors"]),
     new Image("images/img4.jpg", ["Outdoors"]),
