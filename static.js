@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
     new Image("images/img3.jpg", ["Wildlife", "Outdoors"]),
     new Image("images/img4.jpg", ["Outdoors"]),
     new Image("images/img5.jpg", ["People", "Outdoors]),
-    new Image("images/img6.jpg", ["Wildlife", "Outdoors"),
+    new Image("images/img6.jpg", ["Wildlife", "Outdoors"]),
     new Image("images/img7.jpg", ["Wildlife", "Outdoors"]), 
     new Image("images/img8.jpg", ["Outdoors"]), 
     new Image("images/img9.jpg", ["Outdoors"]),
